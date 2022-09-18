@@ -1,7 +1,8 @@
-*.html
-log
+*.dit
 *.json
-!settings
-.dit
-.cookies
-.jpg
+!/settings/setting.json
+*.jpg
+*.html
+*.cookies
+log
+*.logs
