@@ -1,0 +1,531 @@
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" ng-app="dnevnik" ng-jq>
+<head>
+    <meta name="google" value="notranslate"/>
+    <meta charset="utf-8"/>
+    <title>Лента новостей</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Удобная и безопасная среда общения школьников, учителей и родителей. Домашние задания, расписание, оценки - всё в одном месте." />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        <meta name="apple-itunes-app" content="app-id=1167943595, affiliate-data=, app-argument=https://redirect.appmetrica.yandex.com/serve/674858945331942675&amp;ct=native&amp;mt=8"/>
+
+        <script>
+    function sendMetrika(type, action) {
+        if (document.readyState === 'complete' && window.dnevnik && window.dnevnik.analytics && window.dnevnik.analytics.yandex && window.dnevnik.analytics.yandex.params) {
+                var params = '{"SmartAppBanner": {"1000006042383": { "student": {"'+type+'": {"'+action+'":{}}}}}}';
+                window.dnevnik.analytics.yandex.params(JSON.parse(params));
+            }
+        }        
+    </script>
+        <link rel="manifest" href="https://school.mosreg.ru/manifest"/>
+        <script>
+            document.addEventListener('smartbanner.view', function() { sendMetrika("smartapp_android_old", "view"); });
+            document.addEventListener('smartbanner.clickView', function() { sendMetrika("smartapp_android_old", "clickApp"); });
+            document.addEventListener('smartbanner.clickInstall', function() { sendMetrika("smartapp_android_old", "clickGooglePlay"); });
+        </script>
+
+    
+    <link rel="icon" href="https://static.school.mosreg.ru/img/icons/favicon_MosReg.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://static.school.mosreg.ru/img/icons/favicon_MosReg.ico" type="image/x-icon"/>
+    
+    <link rel="stylesheet" href="https://static.school.mosreg.ru/styles/main/common.css?v=58470ee9" media="all" type="text/css"/>
+    <link rel="stylesheet" href="https://static.school.mosreg.ru/blocks/blocks.css?v=995a3fe8" media="all" type="text/css" />
+
+    <link rel="stylesheet" href="https://static.school.mosreg.ru/css/adaptive.css?v=f02f9b01" media="all" type="text/css" />
+
+<link rel="stylesheet" href="https://static.school.mosreg.ru/client/notifications.css?v=836810af" type="text/css" />
+
+    <script type="text/javascript">var dnevnik = {"urls":{"domain":"school.mosreg.ru","taskStateUrl":"https://school.mosreg.ru/user/TaskStateHandler.ashx","moderate":"https://school.mosreg.ru/soc/moderation/abuse.aspx","whiteList":["dnevnik.ru","mosreg.ru","microsoft.com","lego.com","surveymonkey.ru","surveymonkey.com","gosuslugi.ru","adfox.ru","facebook.com","ok.ru","twitter.com","instagram.com","vk.com","apple.com","google.com","dnevnik.ru","youtube.com","youtu.be","research.net","csdnevnik.ru","globallab.org","yaklass.ru","foxford.ru","sberbank.ru","magnit-info.ru","letovo.ru","office.com","sharepoint.com","onenote.com","office365.com","magnitznaniy.ru","magnit.ru","wikipedia.org","vk.com","yandex.ru","mail.ru","google.ru","google.com","ok.ru","avito.ru","instagram.com","facebook.com","aliexpress.com","gismeteo.ru","rambler.ru","2gis.ru","fotostrana.ru","twitter.com","livejournal.com","lenta.ru","hh.ru","kinopoisk.ru","ria.ru","yadi.sk","pikabu.ru","booking.com","rbc.ru","twitch.tv","yandex.com","mosregtest.ru","imumk.ru"],"userCounters":"https://school.mosreg.ru/counters","emailSettings":"https://school.mosreg.ru/user/settings.aspx?view=email","smilesSpriteUrl":"https://static.school.mosreg.ru/images/sprites/emojione.sprites.svg","tinyMceBaseUrl":"https://static.school.mosreg.ru/assets/scripts/vendors/tinymce","gaAutoLinkUrls":null,"adblockDummyUrl":"https://static.school.mosreg.ru/images/banners/adblockDummies/mosregDummy.jpg"},"settings":{"googleAnalytics":{"defaultId":"UA-2883817-3","appsId":"UA-70860859-1","adId":"UA-76476720-2","contactId":"UA-76476720-5","eventsId":"UA-76476720-4","groupsId":"UA-76476720-6","loginId":"UA-76476720-7","messengerId":"UA-76476720-8","networksId":"UA-76476720-9","childrenId":"UA-76476720-3","peopleId":"UA-76476720-10","schoolsId":"UA-76476720-11","wikiId":"UA-76476720-12","mainId":"UA-76476720-1","appSubscriptionId":"UA-70860859-3","limitedCounterId":"UA-106329441-1","limitedCounterSampleRate":1},"yandexMetrikaIds":["17969140","29822639","87535390"],"yandexMetrikaСlickmapEnabled":false,"enableAdFoxZeroPixel":true,"yandexMetrikaId":"17969140","environmentPrefix":"MosReg","yandexMetrikaWebvisorEnabled":false},"fileUploadSettings":{"stateUrl":"https://content.school.mosreg.ru/gettaskstatus","resultUrl":"https://content.school.mosreg.ru/getresult","deleteFileUrl":"https://content.school.mosreg.ru/delete","deleteFolderUrl":"https://content.school.mosreg.ru/deletefolder","defaultFileSizeLimit":"2147483648"},"user":{"preferableLanguage":"ru-RU","suitableCultures":["ru-RU"],"id":"1000006042383","sex":"Male","age":16,"emailHash":"1d541d76e49ad3160502f8831a676ba54b0297814304b3df04abbd36b3d3e9ff","group":63,"role":"EduStudent","commonRole":"student","schools":[{"id":"49504","regionName":"Московская область"}],"children":[],"experimentPRTopic":"PRTopic_gr1"},"auth":{"isAuthenticated":true,"updateInterval":600000,"loginUrl":"https://login.school.mosreg.ru/auth"},"visitParams":{"__RedesignAbGroup2":"groupA"},"localizationSchoolType":""};</script>
+
+            <script type="text/javascript" src="https://static.school.mosreg.ru/assets/scripts/modules/redesign.min.4845237f.js?v=4845237f"></script>
+    <script type="text/javascript" src="https://static.school.mosreg.ru/assets/scripts/vendors/requirejs/require-2.1.6.js?v=ef8e5d03"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl: "https://static.school.mosreg.ru/assets/scripts/modules",
+            urlArgs: "v=19611515",
+        });
+    </script>
+            <script type="text/javascript" src="https://static.school.mosreg.ru/assets/scripts/modules/main-redesign.min.6d26e119.js?v=6d26e119"></script>
+    <script type="text/javascript" src="https://static.school.mosreg.ru/blocks/blocks.js?v=0ec38afb"></script>
+    <script type="text/javascript" src="https://static.school.mosreg.ru/javascripts/local/ru.js?v=0320e479"></script>
+
+    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>
+    <script src="https://static.school.mosreg.ru/client/localization/mosreg.ru-RU.js?v=c92c208f" type="text/javascript"></script>
+    <script src="https://static.school.mosreg.ru/client/react.vendor.bundle.js?v=24a4633f" type="text/javascript"></script>
+
+    
+    
+    <script type="text/javascript">
+        require(['layoutcontrols/menu'],
+            function (menu) {
+                var model = {
+                    newMessages: "Новых сообщений",
+                    noMessages: "Нет новых сообщений",
+                    newFriendRequests: "Новых друзей",
+                    noFriendRequests: "Нет новых друзей",
+                    newGroups: "Новых приглашений",
+                    noGroups: "Нет новых приглашений",
+                    Account: "Личный счёт",
+                    newEvents: "Новых событий",
+                    noEvents: "Нет новых событий",
+                };
+                menu(model);
+            });
+    </script>
+    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>
+    <style>
+        @media screen and (max-width: 620px) {
+            .header_adaptive_wrapper {
+                overflow: hidden;
+                width: 100%;
+                height: 70px;
+                visibility: hidden;
+                
+            }
+        }
+    </style>
+</head>
+<body class="page-body">
+<div class="0b5cb3f508ab439faa17bb7a9539a019 asyncBackgroundBanner"><div style="display:none;">&lt;div class=&quot;bannerBackground&quot;&gt;&lt;!--В head сайта один раз подключите библиотеку--&gt;
+&lt;script src=&quot;https://yastatic.net/pcode/adfox/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;!--AdFox START--&gt;
+&lt;!--Dnevnik.ru--&gt;
+&lt;!--Площадка: School.mosreg.ru / * / *--&gt;
+&lt;!--Тип баннера: BackGround--&gt;
+&lt;!--Расположение: &lt;верх страницы&gt;--&gt;
+&lt;div id=&quot;adfox_1484145947956446&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+    window.Ya.adfoxCode.create({
+        ownerId: 222314,
+        containerId: &#39;adfox_1484145947956446&#39;,
+        params: {
+            pp: &#39;g&#39;,
+            ps: &#39;ccua&#39;,
+            p2: &#39;ewte&#39;,
+            puid1: &#39;16&#39;, puid2: &#39;M&#39;, puid3: &#39;STUDENT&#39;, puid4: &#39;1&#39;, puid5: &#39;N&#39;, puid6: &#39;N&#39;, puid7: &#39;50:137464&#39;, puid8: &#39;N&#39;, puid9: &#39;ComprehensiveSchool&#39;, puid10: &#39;N&#39;, puid11: &#39;P&#39;, puid12: &#39;N&#39;, puid13: &#39;Al4:Bio4:Che3:Eng4:Geo5:Geom4:Hi4:In5:Li4:Ma4:Obj5:Phe4:Phy3:Ru4:So4:WArt4&#39;, puid14: &#39;N&#39;, puid15: &#39;N&#39;,  puid19: &#39;63G&#39;, puid20: &#39;10K&#39;, puid21: &#39;N&#39;, puid22: &#39;ru-RU&#39;, puid23: &#39;1000006042383&#39;, puid24: &#39;N&#39;, puid25: &#39;N&#39; } }); &lt;/script&gt;&lt;/div&gt;</div></div><script>$(document).ready(function () {let container=$(".0b5cb3f508ab439faa17bb7a9539a019");if(container.css("display")!=="none"){container.html($(".0b5cb3f508ab439faa17bb7a9539a019 > div").text());} });</script>            <div class="header_adaptive_wrapper">
+                <div class="page-header  ">
+        <div class="page-header__panel-wrapper">
+            <div class="page-header__panel">
+                <div class="page-header__panel-container">
+                    <a href="https://school.mosreg.ru/feed/" title="На главную страницу системы &#171;Школьный портал&#187;" class="header-logotype header-logotype_mosreg"></a>
+                    <div class="user-counters">
+<a class="button-with-counter button-with-counter_message button-with-counter_first    trackable ya-metrika-trackable" data-category="Шапка" data-action="ЛС" data-target="messenger">
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22">
+        <path fill="#AAB6C2" fill-rule="evenodd" d="M7.293.25c2.873 0 5.368 1.915 6.213 4.66l.07.244-1.449.387C11.532 3.313 9.562 1.75 7.293 1.75c-2.77 0-5.019 2.31-5.019 5.176 0 1.05.3 2.048.853 2.89a.75.75 0 0 1 .113.531c-.099.618-.34 1.192-.694 1.68l-.055.068.052-.001a1.73 1.73 0 0 0 1.038-.484l.117-.124a.75.75 0 0 1 .97-.146c.313.198.65.36 1.005.484l.27.086-.415 1.442a6.509 6.509 0 0 1-.861-.315L4.38 12.9l-.133.102a3.217 3.217 0 0 1-1.669.593l-.204.007c-.648 0-1.267-.19-1.792-.542a.75.75 0 0 1 .04-1.271 2.352 2.352 0 0 0 1.055-1.331l.025-.094-.135-.24a6.758 6.758 0 0 1-.786-2.89l-.007-.308C.774 3.24 3.686.25 7.293.25zm14.345 13.802c0 1.218-.313 2.391-.897 3.425l-.134.225.024.081c.178.564.549 1.051 1.048 1.378l.153.093a.75.75 0 0 1 .037 1.286 3.564 3.564 0 0 1-1.92.559c-.81 0-1.576-.27-2.19-.748l-.021-.017-.065.035a7.148 7.148 0 0 1-2.83.722l-.333.008c-3.935 0-7.128-3.152-7.128-7.047 0-3.894 3.193-7.046 7.128-7.046s7.128 3.152 7.128 7.046zm-12.756 0c0 3.062 2.517 5.547 5.628 5.547 1.06 0 2.073-.288 2.952-.824a.75.75 0 0 1 .951.142c.383.43.936.682 1.532.681l-.053-.062a4.056 4.056 0 0 1-.78-1.625l-.044-.227a.75.75 0 0 1 .12-.547c.616-.902.95-1.968.95-3.085 0-3.06-2.517-5.546-5.628-5.546-3.11 0-5.628 2.485-5.628 5.546z" />
+    </svg>
+    <div class="button-with-counter__counter"></div>
+</a>    <a class="button-with-counter button-with-counter_friend button-with-counter_    " data-category="" data-action="" data-target="">
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22">
+        <path fill="#AAB6C2" fill-rule="evenodd" d="M10.184 13.744L10 13.75c-1.127 0-2.274-.68-3.179-1.76l.18.739c-3.191.774-4.934 2.292-5.211 4.858l-.024.277.163.068c2.006.803 4.805 1.27 7.626 1.314l.445.004c2.97 0 5.959-.473 8.071-1.318l.162-.068v-.026c-.184-2.635-1.835-4.213-4.938-5.034L13 12.729l.179-.74c-.856 1.022-1.928 1.686-2.995 1.755zM10 .25c3.232 0 4.631 1.685 4.902 5.169l.007.097.1.078c.48.414.748 1.118.74 1.88l-.006.178c-.068.893-.509 1.68-1.162 2.012l-.105.047-.024.067a7.773 7.773 0 0 1-.795 1.57c3.914 1.033 6.093 3.283 6.093 6.997a.75.75 0 0 1-.428.677c-2.349 1.119-5.85 1.728-9.322 1.728-3.47 0-6.973-.61-9.322-1.728a.75.75 0 0 1-.428-.677c0-3.714 2.179-5.964 6.093-6.997a7.773 7.773 0 0 1-.795-1.57l-.025-.067-.104-.047C4.807 9.352 4.381 8.64 4.274 7.81l-.017-.167c-.054-.824.218-1.605.735-2.05l.098-.078.032-.369C5.436 1.932 6.782.333 9.76.253zM6.564 6.02l-.024.562-.546.134c-.101.025-.271.36-.241.822.037.487.263.792.365.794l.546.01.158.523c.588 1.95 2.04 3.385 3.178 3.385 1.137 0 2.59-1.435 3.178-3.385l.158-.523.546-.01c.102-.002.328-.307.364-.787.031-.468-.139-.804-.24-.829l-.546-.134-.038-.825C13.25 2.824 12.388 1.75 10 1.75c-2.458 0-3.3 1.138-3.436 4.27z" />
+    </svg>
+    <div class="button-with-counter__counter"></div>
+</a>
+    <a class="button-with-counter button-with-counter_notification    trackable ya-metrika-trackable" data-category="Шапка" data-action="Инвайты" data-target="invites">
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22">
+        <path fill="#AAB6C2" fill-rule="evenodd" d="M4.429 7.861v.968a7.545 7.545 0 0 1-1.44 4.428l-.907 1.249.097.044c.137.06.293.124.472.189l.185.065c1.364.467 3.228.752 5.664.752 2.436 0 4.3-.285 5.664-.752.257-.088.475-.174.657-.254l.096-.044-.905-1.249a7.545 7.545 0 0 1-1.434-4.11l-.007-.318v-.968c0-2.207-1.82-4-4.071-4-2.251 0-4.071 1.793-4.071 4zM8.5 1.75c-.42 0-.765.29-.841.673a5.685 5.685 0 0 1 1.683 0A.849.849 0 0 0 8.5 1.75zm0 18.076c-1.751 0-3.2-1.3-3.404-2.98-1.052-.144-1.964-.355-2.746-.623-.962-.33-1.559-.678-1.853-.945a.75.75 0 0 1-.104-.996l1.381-1.905A6.045 6.045 0 0 0 2.93 8.829v-.968c0-2.207 1.316-4.109 3.214-4.985v-.293A2.343 2.343 0 0 1 8.5.25c1.247 0 2.269.956 2.352 2.173l.005.16v.293c1.898.876 3.214 2.778 3.214 4.985v.968c0 1.272.404 2.512 1.155 3.548l1.381 1.905a.75.75 0 0 1-.104.996c-.294.267-.89.616-1.853.945-.782.268-1.694.48-2.746.622-.204 1.681-1.653 2.981-3.404 2.981zm0-1.5c.866 0 1.598-.56 1.842-1.327-.58.037-1.193.057-1.842.057-.65 0-1.263-.02-1.842-.057A1.926 1.926 0 0 0 8.5 18.326z" />
+    </svg>
+    <div class="button-with-counter__counter"></div>
+</a>
+    <div class="ntf-notifications-container">
+          <div id="ntf-notifications-root"></div>
+          <div class="ntf-notifications-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 18 18"><g><g><path fill="#aab6c2" d="M11.71 4.522c-.5-1.284-1.198-2.212-1.96-2.588v3.014a8.172 8.172 0 0 0 1.96-.426zm-5.424.009a8.186 8.186 0 0 0 1.964.42V1.934c-.764.377-1.463 1.308-1.964 2.597zm.01 8.963c.5 1.276 1.195 2.198 1.954 2.572v-2.989a8.19 8.19 0 0 0-1.954.417zm5.405.009a8.176 8.176 0 0 0-1.951-.423v2.986c.757-.374 1.451-1.292 1.95-2.563zM5.848 5.968a13.217 13.217 0 0 0-.314 2.282H8.25V6.456a9.663 9.663 0 0 1-2.402-.488zm6.302-.01a9.65 9.65 0 0 1-2.4.496V8.25h2.716a13.212 13.212 0 0 0-.316-2.291zm-.007 6.11c.168-.715.28-1.494.323-2.318H9.75v1.824a9.652 9.652 0 0 1 2.393.494zm-6.289-.01a9.665 9.665 0 0 1 2.396-.486V9.75H5.534c.043.82.154 1.597.32 2.309zM17.75 9A8.75 8.75 0 1 1 .25 9a8.75 8.75 0 1 1 17.5 0zm-5.298-6.377c.225.376.429.79.609 1.234.208-.14.394-.291.553-.45a7.263 7.263 0 0 0-1.162-.784zm0 12.754c.408-.221.791-.48 1.147-.772a3.867 3.867 0 0 0-.547-.44 8.967 8.967 0 0 1-.6 1.212zm1.082-2.677c.423.247.801.529 1.119.84a7.216 7.216 0 0 0 1.559-3.79h-2.244a14.54 14.54 0 0 1-.434 2.95zm1.132-8.224c-.32.314-.7.599-1.126.849.232.905.38 1.891.428 2.925h2.244a7.215 7.215 0 0 0-1.546-3.774zM5.548 2.623c-.42.228-.814.495-1.178.797.163.16.352.31.563.452.182-.45.387-.868.615-1.249zm0 12.754a8.982 8.982 0 0 1-.606-1.226 3.914 3.914 0 0 0-.556.442c.36.297.749.56 1.162.784zM4.456 5.339a5.74 5.74 0 0 1-1.134-.848A7.215 7.215 0 0 0 1.788 8.25h2.244c.048-1.028.194-2.01.424-2.911zm-1.121 8.185a5.76 5.76 0 0 1 1.127-.838 14.548 14.548 0 0 1-.43-2.936H1.788a7.215 7.215 0 0 0 1.547 3.774z" /></g></g></svg>
+          </div>
+    </div>
+  
+</div>
+
+<script>
+    require(['layoutcontrols/userCounter'], function (userCounter) {
+        var messageModel = {
+            counterSelector: '.button-with-counter_message',
+            counterContentClass: 'button-with-counter__counter',
+            link: 'https://school.mosreg.ru/soc/messenger/',
+            spamLink: 'https://school.mosreg.ru/soc/messenger/?view=spam'
+        };
+
+        var friendModel = {
+            counterSelector: '.button-with-counter_friend',
+            counterContentClass: 'button-with-counter__counter',
+            link: 'https://school.mosreg.ru/user/user.aspx?user=1000006042383&view=friends&group=waiting',
+            linkForEmpty: 'https://school.mosreg.ru/user/user.aspx?user=1000006042383&view=friends'
+        };
+
+        var notificationModel = {
+            counterSelector: '.button-with-counter_notification',
+            counterContentClass: 'button-with-counter__counter',
+            link: 'https://school.mosreg.ru/invites'
+        };
+        
+        var kundalikPayModel = {
+            counterSelector: '.button-with-counter_kundalikpay',
+            counterContentClass: 'button-with-counter__counter',
+            link: 'https://school.mosreg.ru/kundalikpay'
+        };
+        
+        userCounter(messageModel);
+        userCounter(friendModel);
+        userCounter(notificationModel);
+        userCounter(kundalikPayModel);
+    });
+</script>
+<script>
+  window.notificationsAppSettings = {
+     apiUrl: "https://notifications.school.mosreg.ru/api",
+     rootElementId: "ntf-notifications-root"
+  }
+</script>
+<script defer src="https://static.school.mosreg.ru/client/notifications.js?v=b33b1242"></script>
+<script defer src="https://static.school.mosreg.ru/client/chat_notifications.js?v=3358eac4"></script>
+<link rel="stylesheet" href="https://static.school.mosreg.ru/client/chat_notifications.css?v=893f4a26" media="all" type="text/css"></link>
+
+                </div>
+                <div class="page-header__panel-container_items page-header__panel-container_items_mosreg">
+                        <div class="page-header__panel-container page-header__panel-container_search page-header__panel-container_search_mosreg">
+                            <div class="page-header__search">
+                                <div class="header-search">
+    <a class="button button_background-search    " onclick="return false;" 
+   data-category="" data-action="" data-target="">
+    
+</a>
+
+    <div class="header-search__area header-search__area_disable">
+        <form action="https://school.mosreg.ru/soc/search">
+            <input type="text" name="search" class="header-search__search-input header-search__search-input_mosreg" placeholder="Поиск" maxlength="150" />
+            <a class="button button_background-close    " onclick="return false;" 
+   data-category="" data-action="" data-target="">
+    
+</a>
+        </form>
+    </div>
+</div>
+<script>require(['HeaderSearch/HeaderSearch'], function () { for(var i = 0, l = arguments.length; i < l; i += 1) { arguments[i](JSON.parse('null')); } });</script>
+                            </div>
+                        </div>
+                                        <div class="page-header__panel-container page-header__panel-container_profile">
+                        
+
+
+<div class="user-profile-box" data-test-id="user-profile-info">
+    <div class="user-profile-box__info">
+        <div class="user-profile-box__info_row user-profile-box__avatar">
+            <img src="https://static.school.mosreg.ru/images/avatars/user/a.s.jpg" />
+        </div>
+        <div class="user-profile-box__info_row user-profile-box__info_row-content">
+            <p class="user-profile-box__info_row-content user-profile-box__initials">Тарасов И.А.</p>
+            <p class="user-profile-box__info_row-content user-profile-box__category">Обучающийся</p>
+        </div>
+        <div class="user-profile-box__info_row user-profile-box__tumbler"></div>
+    </div>
+
+    
+<div class="dropdown-container">
+<a href="https://school.mosreg.ru/user/settings.aspx?user=1000006042383" title="Настройки" class="link link_dropdown-container-link link_ link_ " >
+    Настройки
+    
+</a><a href="https://helpschool.mosreg.ru/hc/ru/" title="Помощь" class="link link_dropdown-container-link link_ link_adaptive-only " >
+    Помощь
+    
+</a><a href="https://login.school.mosreg.ru/logout" title="Выйти из Школьного портала" class="link link_dropdown-container-link link_ link_box-sizing-content-box " Id=profile_logout>
+    Выйти из Школьного портала
+    
+</a></div><script>require(['DropdownContainer/DropdownContainer'], function () { for(var i = 0, l = arguments.length; i < l; i += 1) { arguments[i](JSON.parse('\x7b\x22tumblerClass\x22\x3a\x22user-profile-box\x22,\x22activationClasses\x22\x3a\x5b\x22user-profile-box__info\x22,\x22dropdown-container\x22\x5d\x7d')); } });</script>
+    <form name="profileLogout" action="https://login.school.mosreg.ru/logout" method="post">
+    </form>
+</div>
+<script>
+    $('#profile_logout').click(function () {
+        document.profileLogout.submit();
+        return false;
+    });
+</script>
+
+
+
+
+
+                    </div>
+                    <div class="page-header__panel-container page-header__panel-container_end">
+                        
+<div class="header-links">
+    <a class="header-links__link" href="https://helpschool.mosreg.ru/hc/ru/" target="_blank">Помощь</a>
+    <form name="logout" action="https://login.school.mosreg.ru/logout" method="post">
+        <a class="header-links__link" onClick="document.logout.submit();" href="#">Выход</a>
+    </form>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear header-menu-adaptive">
+            <ul class="header-menu"><li class="header-menu__item header-menu__item_active"><a class="header-menu__link" href="https://school.mosreg.ru/feed" target="_self" title="Образование">Образование </a><ul class="header-submenu header-submenu_active"><li class="header-submenu__item"><a class="header-submenu__link" href="https://schools.school.mosreg.ru/school.aspx"  title="Моя школа">Моя школа </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://schools.school.mosreg.ru/class.aspx"  title="Мой класс">Мой класс </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://schools.school.mosreg.ru/marks.aspx"  title="Успеваемость">Успеваемость </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://schools.school.mosreg.ru/schedules/"  title="Расписание">Расписание </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://schools.school.mosreg.ru/homework.aspx"  title="Домашние задания">Домашние задания </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://dit.mosreg.ru/externallogin?personid=2000001769719"  title="Тестирование">Тестирование </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://isko.mosreg.ru/newProf"  title="Портфолио">Портфолио </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://dop.mosreg.ru/"  title="ЕИС ДОП">ЕИС ДОП </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/chat?chatsource=headerstudent" target="_blank" title="Чаты"><img src="https://static.school.mosreg.ru/images/chat/chat.svg" class="header-menu__link-icon"/>Чаты </a></li><ul class="header-submenu__item header-submenu__more-item"><div class="header-submenu__more-item-name">Ещё</div></ul></ul></li><li class="header-menu__item"><a class="header-menu__link" href="https://school.mosreg.ru/user/user.aspx"  title="Профиль">Профиль </a><ul class="header-submenu"><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/soc/messenger/"  title="Сообщения">Сообщения </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://login.school.mosreg.ru/idp/msonline"  title="Почта">Почта </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/user/calendar.aspx"  title="Календарь">Календарь </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/user/news.aspx"  title="Обновления">Обновления </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/user/user.aspx?view=friends"  title="Друзья">Друзья </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/user/user.aspx?view=groups"  title="Группы">Группы </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/user/user.aspx?view=events"  title="События">События </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/user/user.aspx?view=blog"  title="Блог">Блог </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/user/user.aspx?view=files"  title="Файлы">Файлы </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://digital.school.mosreg.ru/mosreg_remote_user/2000001769719?page=porfolio"  title="Портфолио">Портфолио </a></li><ul class="header-submenu__item header-submenu__more-item"><div class="header-submenu__more-item-name">Ещё</div></ul></ul></li><li class="header-menu__item"><a class="header-menu__link" href="https://school.mosreg.ru/soc/contact"  title="Общение">Общение </a><ul class="header-submenu"><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/people"  title="Люди">Люди </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/social/groups"  title="Группы">Группы </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/social/events"  title="События">События </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/contests"  title="Конкурсы">Конкурсы </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://school.mosreg.ru/soc/networks"  title="Сети">Сети </a></li><ul class="header-submenu__item header-submenu__more-item"><div class="header-submenu__more-item-name">Ещё</div></ul></ul></li><li class="header-menu__item"><a class="header-menu__link" href="https://school.mosreg.ru:443/soc/apps/?utm_source=mosreg&utm_medium=mainnav&utm_campaign=button"  title="Приложения">Приложения </a></li><li class="header-menu__item"><a class="header-menu__link" href=""  title="Олимпиады">Олимпиады </a><ul class="header-submenu"><li class="header-submenu__item"><a class="header-submenu__link" href="https://mo.olymponline.ru/" target="_blank" title="Решать">Решать </a></li><li class="header-submenu__item"><a class="header-submenu__link" href="https://dit.mosreg.ru/participant/olympiads?personid=2000001769719" target="_blank" title="Результаты">Результаты </a></li><ul class="header-submenu__item header-submenu__more-item"><div class="header-submenu__more-item-name">Ещё</div></ul></ul></li><li class="header-menu__item header-menu__item_ext"><div class="header-menu__banner-container"><div class="7acdfa3dd9fc445b81bdd0af68efa04f asyncMenuButtonBanner"><div style="display:none;">&lt;!--В head сайта один раз подключите библиотеку--&gt;
+&lt;script src=&quot;https://yastatic.net/pcode/adfox/loader.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;!--AdFox START--&gt;
+&lt;!--Dnevnik.ru--&gt;
+&lt;!--Площадка: School.mosreg.ru / main / Кнопка в меню--&gt;
+&lt;!--Категория: &lt;не задана&gt;--&gt;
+&lt;!--Тип баннера: Кнопка меню_2--&gt;
+&lt;div id=&quot;adfox_158996179950546015&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+    window.Ya.adfoxCode.create({
+        ownerId: 222314,
+        containerId: &#39;adfox_158996179950546015&#39;,
+        params: {
+            p1: &#39;ckrfg&#39;,
+            p2: &#39;ggwt&#39;,
+            puid1: &#39;16&#39;,
+            puid2: &#39;M&#39;,
+            puid3: &#39;STUDENT&#39;,
+            puid4: &#39;1&#39;,
+            puid5: &#39;N&#39;,
+            puid6: &#39;N&#39;,
+            puid7: &#39;50:137464&#39;,
+            puid8: &#39;N&#39;,
+            puid9: &#39;ComprehensiveSchool&#39;,
+            puid10: &#39;N&#39;,
+            puid11: &#39;P&#39;,
+            puid12: &#39;N&#39;,
+            puid13: &#39;Al4:Bio4:Che3:Eng4:Geo5:Geom4:Hi4:In5:Li4:Ma4:Obj5:Phe4:Phy3:Ru4:So4:WArt4&#39;,
+            puid14: &#39;N&#39;,
+            puid15: &#39;N&#39;,
+            puid19: &#39;63G&#39;,
+            puid20: &#39;10K&#39;,
+            puid21: &#39;N&#39;,
+            puid22: &#39;ru-RU&#39;,
+            puid23: &#39;1000006042383&#39;,
+            puid24: &#39;N&#39;,
+            puid25: &#39;N&#39;,
+            puid26: &#39;&#39;
+        }
+    });
+&lt;/script&gt;</div></div><script>$(document).ready(function () {let container=$(".7acdfa3dd9fc445b81bdd0af68efa04f");if(container.css("display")!=="none"){container.html($(".7acdfa3dd9fc445b81bdd0af68efa04f > div").text());} });</script></div></li></ul><script type='text/javascript'>require(['analytics/menuYaMetrika']);</script>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require(['layoutcontrols/menu', 'analytics/urlTracker', 'ab/yandexMetrikaTracker'], function (menu, urlTracker, yandexMetrikaTracker) {
+
+             var model = {
+                 newMessages: "Новых сообщений",
+                 noMessages: "Нет новых сообщений",
+                 newFriendRequests: "Новых друзей",
+                 noFriendRequests: "Нет новых друзей",
+                 newGroups: "Новых приглашений",
+                 noGroups: "Нет новых приглашений",
+                 Account: "Личный счёт",
+                 newEvents: "Новых событий",
+                 noEvents: "Нет новых событий",
+             };
+
+             menu(model);
+
+             var urlTrackerModel = {
+                 elementSelector: 'li#AppCenter>a',
+                 urlPrefix: '/virtual/center',
+                 trackingConditions: 'click'
+             };
+             urlTracker(urlTrackerModel);
+
+             yandexMetrikaTracker({ action: 'reachGoal' });
+        });
+
+        require(['common/adblockDummyInsert'], function (adblockDummyInsert) {
+            adblockDummyInsert();
+        });
+    </script>
+        <script type="text/javascript">
+        require(['https://static.school.mosreg.ru/scripts/modules/layoutcontrols/menuextention.js?v=7a856a03'], function () {
+            var exetention = arguments[0];
+            exetention({ credUrl: 'https://schools.school.mosreg.ru/authorities/ajax.ashx?xss=4eb85eb43b8f4c0540e078bc616ee58f00e899c1ce62a5623232828e4a50678e&a=saiku', defaultError: 'Произошла ошибка при доступе к статистике.' });
+        });
+        </script>
+
+        </div>
+
+
+<script>
+</script>
+    
+
+<style>
+    @media screen and (min-width: 620px) {
+        .asyncTop970x200Banner {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 620px) {
+        .asyncBackgroundBanner {
+            display: none;
+        }
+
+        .asyncTop970x200Banner {
+            height: auto;
+            width: auto;
+        }
+
+        .banner970 {
+            height: auto;
+            width: auto;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="https://static.school.mosreg.ru/client/user_start_page.css?v=0adede07" type="text/css" />
+<div id="survey-form"></div>
+<div id="push-notifications"></div>
+<div id="user-start-page"></div>
+<script>
+
+            window.__SURVEY_FORM_INITIAL_STATE__ = {"surveyForm":null,"surveyFormAnswerUrl":"https://school.mosreg.ru/api/surveyFormAnswer","staticUrl":"https://static.school.mosreg.ru/images/survey_form"};
+    window.__USER__START__PAGE__INITIAL__STATE__ = {"userSchedule":{"apiUrl":"https://school.mosreg.ru/api/userfeed","children":[{"schoolId":"49504","groupId":"1821894698216843712","personId":"2000001769719","schedule":{"days":[{"date":"1647993600","utcOffset":180,"hasImportantWork":true,"dayHomeworksProgress":{"totalLessonsWithHomeworksCount":8,"completedLessonsWithHomeworksCount":0},"lessons":[{"id":"1876197704906916338","number":1,"place":"№ 2","startTime":"1648013400","endTime":"1648016100","hours":{"startHour":"8","startMinute":"30","endHour":"9","endMinute":"15"},"isCanceled":false,"theme":"Хромосомная теория наследственности.","meetingUrl":null,"subject":{"id":"2549665482497289","name":"Биология","knowledgeArea":"NaturalScience"},"importantWorks":["Самостоятельная работа"],"homework":{"text":"Уметь решать задачи по III Закону Г. Менделя и задачи на неполное доминирование.","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916139","number":2,"place":"№ 2","startTime":"1648016700","endTime":"1648019400","hours":{"startHour":"9","startMinute":"25","endHour":"10","endMinute":"10"},"isCanceled":false,"theme":"Нарастание агрессии в мире. Установление нацистской диктатуры в Германии","meetingUrl":null,"subject":{"id":"2549704137202962","name":"История","knowledgeArea":"SocialStudies"},"importantWorks":[],"homework":{"text":"п. 8, чтение, ответы на вопросы письменно, анализ документов","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916205","number":3,"place":"№ 2","startTime":"1648020600","endTime":"1648023300","hours":{"startHour":"10","startMinute":"30","endHour":"11","endMinute":"15"},"isCanceled":false,"theme":"Язык и речь. Виды речевой деятельности","meetingUrl":null,"subject":{"id":"1587409859180045911","name":"Родной язык","knowledgeArea":"Philology"},"importantWorks":[],"homework":{"text":"Выполнить задания  https://edu.skysmart.ru/student/sogonizaze","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[{"workId":"1901361656301177422","marks":[{"id":"1927984651035548520","value":"4-","mood":"Good"}]}],"isEmpty":false,"comment":null},{"id":"1876197704906916267","number":4,"place":"№ 2","startTime":"1648024200","endTime":"1648026900","hours":{"startHour":"11","startMinute":"30","endHour":"12","endMinute":"15"},"isCanceled":false,"theme":"Системы показательных уравнений и неравенств","meetingUrl":null,"subject":{"id":"1581424813663132612","name":"Математика 10-11","knowledgeArea":"Mathematics"},"importantWorks":[],"homework":{"text":"№ 228(4,6), 229(2,4), 253(2,4); № 240(2), 241(2), 242(2), 243(2,4,6)","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916347","number":5,"place":"№ 2","startTime":"1648027500","endTime":"1648030200","hours":{"startHour":"12","startMinute":"25","endHour":"13","endMinute":"10"},"isCanceled":false,"theme":"Обобщающий урок по теме «Углеводы»","meetingUrl":null,"subject":{"id":"2549755676810526","name":"Химия","knowledgeArea":"NaturalScience"},"importantWorks":[],"homework":{"text":"п.35","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916365","number":6,"place":"№ 2","startTime":"1648031400","endTime":"1648034100","hours":{"startHour":"13","startMinute":"30","endHour":"14","endMinute":"15"},"isCanceled":false,"theme":"Составление и решение цепочек превращений между различными классами органических веществ.","meetingUrl":null,"subject":{"id":"1581427132945472456","name":"ЭК по химии","knowledgeArea":"NaturalScience"},"importantWorks":[],"homework":{"text":"учить формулы!!!","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916374","number":7,"place":"№ 2","startTime":"1648035000","endTime":"1648037700","hours":{"startHour":"14","startMinute":"30","endHour":"15","endMinute":"15"},"isCanceled":false,"theme":"Химическая и лесная промышленность","meetingUrl":null,"subject":{"id":"2549674072431883","name":"География","knowledgeArea":"NaturalScience"},"importantWorks":[],"homework":{"text":"п. 20,  чтение, ответы на вопросы письменно, термины наизусть, уметь ориентироваться по географической карте","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"0","number":8,"place":null,"startTime":null,"endTime":null,"hours":{"startHour":null,"startMinute":null,"endHour":null,"endMinute":null},"isCanceled":false,"theme":null,"meetingUrl":null,"subject":null,"importantWorks":[],"homework":null,"hasAttachment":false,"workMarks":[],"isEmpty":true,"comment":null},{"id":"1876197704906916454","number":9,"place":"№ 2","startTime":null,"endTime":null,"hours":{"startHour":null,"startMinute":null,"endHour":null,"endMinute":null},"isCanceled":false,"theme":"Обобщение знаний по теме «Создание семьи». Тестирование","meetingUrl":null,"subject":{"id":"1725168624506847504","name":"Этика и психология","knowledgeArea":"NaturalScience"},"importantWorks":[],"homework":{"text":"не задано","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null}]},{"date":"1648080000","utcOffset":180,"hasImportantWork":false,"dayHomeworksProgress":{"totalLessonsWithHomeworksCount":7,"completedLessonsWithHomeworksCount":0},"lessons":[{"id":"1876197704906916276","number":1,"place":"№ 2","startTime":"1648099800","endTime":"1648102500","hours":{"startHour":"8","startMinute":"30","endHour":"9","endMinute":"15"},"isCanceled":false,"theme":"Правильная пирамида","meetingUrl":null,"subject":{"id":"1581424813663132612","name":"Математика 10-11","knowledgeArea":"Mathematics"},"importantWorks":[],"homework":{"text":"п.27-33(знать теорию; выучить выводы, записанные на уроке) № 240, 243; ЗАДАЧА: В основании пирамиды лежит треугольник со сторонами 10,8,6 см. Боковые ребра наклонены к плоскости основания под углом 45 градусов. Найдите площадь полной поверхности пирамиды","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916285","number":2,"place":"№ 2","startTime":"1648103100","endTime":"1648105800","hours":{"startHour":"9","startMinute":"25","endHour":"10","endMinute":"10"},"isCanceled":false,"theme":"Решение задач по теме \"Правильная пирамида\"","meetingUrl":null,"subject":{"id":"1581424813663132612","name":"Математика 10-11","knowledgeArea":"Mathematics"},"importantWorks":[],"homework":null,"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916383","number":3,"place":"№ 2","startTime":"1648107000","endTime":"1648109700","hours":{"startHour":"10","startMinute":"30","endHour":"11","endMinute":"15"},"isCanceled":false,"theme":"Поле точеченого заряда и заряженного шара. Принцип суперпозиции  полей","meetingUrl":null,"subject":{"id":"2549747086875932","name":"Физика","knowledgeArea":"NaturalScience"},"importantWorks":[],"homework":{"text":"Подготовиться к опросу по молекулярной физике и термодинамике( вопросы розданы индивидуально), повторите п.п.91-элементарные частицы, о каких телах говорят, что они заряжены, какая F больше - кулоновская или гравитационная между зарядами,.почему тела заряжаются при трении,п. 92 повторите, по учебнику найдите ответ : в чем суть опыта Кулона-стр 282. Решите задачи:А3с.285, А3,А4 с.285. Повторите по тетради , что такое напряженность эл.поля,формулы., силовые линии одиночных зарядов , двух \" +\" и \" -\" ,\"- \" и \" -\"и пластин конденсатора; Выучите к зачету все формулы по молекулярной физике- опрос","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916322","number":4,"place":"физк.зал","startTime":"1648110600","endTime":"1648113300","hours":{"startHour":"11","startMinute":"30","endHour":"12","endMinute":"15"},"isCanceled":false,"theme":"ОРУ.  Подтягивание. Сгибание рук в упоре лежа. Поднимание туловища из положения лежа.","meetingUrl":null,"subject":{"id":"2549751381843229","name":"Физкультура","knowledgeArea":"PhysicalCulture"},"importantWorks":[],"homework":{"text":"Наклоны головы вперед назад, вправо влево, повороты головы вправо влево. Поднимание и опускание плеч, отведение и сведение, круговые движения плечами. Наклоны и повороты туловища в различных положениях. Ходьба на носках. с поджатыми пальцами, на наружных сторонах стопы.","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916244","number":5,"place":"№ 2","startTime":"1648113900","endTime":"1648116600","hours":{"startHour":"12","startMinute":"25","endHour":"13","endMinute":"10"},"isCanceled":false,"theme":"","meetingUrl":null,"subject":{"id":"2549661187529992","name":"Англ. язык","knowledgeArea":"Philology"},"importantWorks":[],"homework":{"text":"Учебник стр. 68-69 - доделать ","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916356","number":6,"place":"№ 2","startTime":"1648117800","endTime":"1648120500","hours":{"startHour":"13","startMinute":"30","endHour":"14","endMinute":"15"},"isCanceled":false,"theme":"Амины.","meetingUrl":null,"subject":{"id":"2549755676810526","name":"Химия","knowledgeArea":"NaturalScience"},"importantWorks":[],"homework":{"text":"повторить п.31-34","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"1876197704906916214","number":7,"place":"№ 2","startTime":"1648121400","endTime":"1648124100","hours":{"startHour":"14","startMinute":"30","endHour":"15","endMinute":"15"},"isCanceled":false,"theme":"Флоренция – колыбель итальянского Возрождения.","meetingUrl":null,"subject":{"id":"2549699842235665","name":"МХК","knowledgeArea":"Art"},"importantWorks":[],"homework":{"text":"Стр 309-310 вопросы и задания, темы для устных выступлений и докладов.","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null},{"id":"0","number":8,"place":null,"startTime":null,"endTime":null,"hours":{"startHour":null,"startMinute":null,"endHour":null,"endMinute":null},"isCanceled":false,"theme":null,"meetingUrl":null,"subject":null,"importantWorks":[],"homework":null,"hasAttachment":false,"workMarks":[],"isEmpty":true,"comment":null},{"id":"1876197704906916472","number":9,"place":"№ 2","startTime":null,"endTime":null,"hours":{"startHour":null,"startMinute":null,"endHour":null,"endMinute":null},"isCanceled":false,"theme":"Первый и второй законы термодинамики","meetingUrl":null,"subject":{"id":"1857197817561435854","name":"Математика(ол.задачи","knowledgeArea":"Mathematics"},"importantWorks":[],"homework":{"text":"-","isCompleted":false,"workIsAttachRequired":false,"attachments":[],"userAttachments":[],"lessonId":null},"hasAttachment":false,"workMarks":[],"isEmpty":false,"comment":null}]}],"chatStub":{"jid":"chat_students_1821894698216843712@muclight.xmpp.school.mosreg.ru"}}}],"currentChild":{"hasSchedule":true,"schoolId":"49504","groupId":"1821894698216843712","personId":"2000001769719","schoolType":"Regular"},"currentDate":"1647993600"},"userMarks":{"children":[{"schoolId":"49504","groupId":"1821894698216843712","personId":"2000001769719","marks":[{"date":"1648028707","lessonDate":"1647993600","subject":{"id":"1587409859180045911","name":"Родной язык","knowledgeArea":"Philology","subjectMood":null},"markType":"Mark","markTypeText":"Ответ на уроке","shortMarkTypeText":"ОТВ","isFinal":false,"marks":[{"id":"1927984651035548520","value":"4-","mood":"Good"}],"workId":"1901361656301177422","number":0,"periodId":"2"},{"date":"1647953029","lessonDate":"1647907200","subject":{"id":"2552212398103840","name":"Литература","knowledgeArea":"Philology","subjectMood":null},"markType":"Mark","markTypeText":"Ответ на уроке","shortMarkTypeText":"ОТВ","isFinal":false,"marks":[{"id":"1927659616500536241","value":"4","mood":"Good"}],"workId":"1901419835928200129","number":0,"periodId":"2"},{"date":"1647931915","lessonDate":"1647388800","subject":{"id":"2549665482497289","name":"Биология","knowledgeArea":"NaturalScience","subjectMood":null},"markType":"Mark","markTypeText":"Проверочная работа","shortMarkTypeText":"ПР","isFinal":false,"marks":[{"id":"1927568932561050213","value":"5","mood":"Good"}],"workId":"1903958651226413709","number":0,"periodId":"2"},{"date":"1647890441","lessonDate":"1647820800","subject":{"id":"1581424813663132612","name":"Математика 10-11","knowledgeArea":"Mathematics","subjectMood":null},"markType":"Mark","markTypeText":"Проверочная работа","shortMarkTypeText":"ПР","isFinal":false,"marks":[{"id":"1927390803087418038","value":"4-","mood":"Good"}],"workId":"1900204514802246754","number":0,"periodId":"2"},{"date":"1647876871","lessonDate":"1647820800","subject":{"id":"2549704137202962","name":"История","knowledgeArea":"SocialStudies","subjectMood":null},"markType":"Mark","markTypeText":"Работа на уроке","shortMarkTypeText":"Р/У","isFinal":false,"marks":[{"id":"1927332520381236393","value":"5","mood":"Good"}],"workId":"1901315859064917873","number":0,"periodId":"2"},{"date":"1647624812","lessonDate":"1647561600","subject":{"id":"2549721317072150","name":"ОБЖ","knowledgeArea":"Common","subjectMood":null},"markType":"Mark","markTypeText":"Ответ на уроке","shortMarkTypeText":"ОТВ","isFinal":false,"marks":[{"id":"1926249935219554742","value":"5","mood":"Good"}],"workId":"1902767682565020245","number":0,"periodId":"2"},{"date":"1647609584","lessonDate":"1647561600","subject":{"id":"2552212398103840","name":"Литература","knowledgeArea":"Philology","subjectMood":null},"markType":"Mark","markTypeText":"Опрос","shortMarkTypeText":"О","isFinal":false,"marks":[{"id":"1926184531457576928","value":"4-","mood":"Good"}],"workId":"1901419835928200095","number":0,"periodId":"2"},{"date":"1647606409","lessonDate":"1647561600","subject":{"id":"2549725612039447","name":"Обществознание","knowledgeArea":"SocialStudies","subjectMood":null},"markType":"Mark","markTypeText":"Продуктивные задания","shortMarkTypeText":"ПрЗд","isFinal":false,"marks":[{"id":"1926170894936386962","value":"4","mood":"Good"}],"workId":"1902782929698929115","number":0,"periodId":"2"},{"date":"1647606401","lessonDate":"1647561600","subject":{"id":"2549725612039447","name":"Обществознание","knowledgeArea":"SocialStudies","subjectMood":null},"markType":"Mark","markTypeText":"Работа с таблицами","shortMarkTypeText":"РСТ","isFinal":false,"marks":[{"id":"1926170860576648518","value":"4","mood":"Good"}],"workId":"1902782929698929107","number":0,"periodId":"2"},{"date":"1647534961","lessonDate":"1647475200","subject":{"id":"2549751381843229","name":"Физкультура","knowledgeArea":"PhysicalCulture","subjectMood":null},"markType":"Mark","markTypeText":"Зачет","shortMarkTypeText":"Зчт","isFinal":false,"marks":[{"id":"1925864028113018225","value":"2","mood":"Bad"}],"workId":"1901334619482089894","number":0,"periodId":"2"},{"date":"1647516210","lessonDate":"1647475200","subject":{"id":"2549755676810526","name":"Химия","knowledgeArea":"NaturalScience","subjectMood":null},"markType":"Mark","markTypeText":"Урок","shortMarkTypeText":"УР","isFinal":false,"marks":[{"id":"1925783493181244973","value":"4","mood":"Good"}],"workId":"1902038062110671778","number":0,"periodId":"2"},{"date":"1647511346","lessonDate":"1646870400","subject":{"id":"2549747086875932","name":"Физика","knowledgeArea":"NaturalScience","subjectMood":null},"markType":"Mark","markTypeText":"Рабочая тетрадь (Конспект)","shortMarkTypeText":"Р/Т","isFinal":false,"marks":[{"id":"1925762602460380661","value":"3","mood":"Average"}],"workId":"1902307975035482669","number":0,"periodId":"2"},{"date":"1647510323","lessonDate":"1646956800","subject":{"id":"2549747086875932","name":"Физика","knowledgeArea":"NaturalScience","subjectMood":null},"markType":"Mark","markTypeText":"Контрольная","shortMarkTypeText":"К/Р","isFinal":false,"marks":[{"id":"1925758208708822580","value":"5","mood":"Good"}],"workId":"1902307975035482678","number":0,"periodId":"2"},{"date":"1647437564","lessonDate":"1647388800","subject":{"id":"2549674072431883","name":"География","knowledgeArea":"NaturalScience","subjectMood":null},"markType":"Mark","markTypeText":"Практическая работа","shortMarkTypeText":"П/Р","isFinal":false,"marks":[{"id":"1925445711183298106","value":"5","mood":"Good"}],"workId":"1902084958858605864","number":0,"periodId":"2"},{"date":"1647436983","lessonDate":"1647388800","subject":{"id":"2549704137202962","name":"История","knowledgeArea":"SocialStudies","subjectMood":null},"markType":"Mark","markTypeText":"Работа с таблицами","shortMarkTypeText":"РСТ","isFinal":false,"marks":[{"id":"1925443215807296227","value":"4","mood":"Good"}],"workId":"1901315859064917848","number":0,"periodId":"2"}]}],"currentChild":{"hasSchedule":true,"schoolId":"49504","groupId":"1821894698216843712","personId":"2000001769719","schoolType":"Regular"},"zoomMarks":false},"userContext":{"contextPersons":[{"userId":"1000006042383","personId":"2000001769719","firstName":"Игорь","middleName":"Алексеевич","lastName":"Тарасов","avatarUrl":null,"school":{"id":"49504","name":"МОУСиньковская средняя общеобразовательная школа№2","type":"Regular","avatarUrl":"https://b4.csdnevnik.ru/socialnetwork-avatar/b3b1478e540ce111bbe40019bbd299a0.jpg","pageUrl":"https://schools.school.mosreg.ru/school.aspx?school=49504","regionIds":[148,8443]},"group":{"id":"1821894698216843712","name":"10","pageUrl":"https://schools.school.mosreg.ru/class.aspx?class=1821894698216843712","isCriteriaJournalType":false,"classTeacherUserId":"1771785","classTeacherChatUrl":"https://school.mosreg.ru/chat/user_1771785@xmpp.school.mosreg.ru","classTeacherJid":"user_1771785@xmpp.school.mosreg.ru","groupStaffPageUrl":"https://schools.school.mosreg.ru/class.aspx?class=1821894698216843712&view=members&group=staff","studyYear":2021,"parallel":10},"reportingPeriodGroup":{"id":"1849692448111006787","type":"Semester","periods":[{"id":"1849692448111017255","number":0,"type":"Semester","dateStart":"1630454400","dateFinish":"1640736000","studyYear":2021,"isCurrent":false},{"id":"1849692448111017256","number":1,"type":"Semester","dateStart":"1641772800","dateFinish":"1653955200","studyYear":2021,"isCurrent":true}]},"classTeacherAvatarUrl":null,"classTeacherName":"Забавнова Т. Ю.","haveActiveSubscription":null,"askHomeworkAvailable":false}],"currentContextPerson":{"userId":"1000006042383","personId":"2000001769719","firstName":"Игорь","middleName":"Алексеевич","lastName":"Тарасов","avatarUrl":null,"school":{"id":"49504","name":"МОУСиньковская средняя общеобразовательная школа№2","type":"Regular","avatarUrl":"https://b4.csdnevnik.ru/socialnetwork-avatar/b3b1478e540ce111bbe40019bbd299a0.jpg","pageUrl":"https://schools.school.mosreg.ru/school.aspx?school=49504","regionIds":[148,8443]},"group":{"id":"1821894698216843712","name":"10","pageUrl":"https://schools.school.mosreg.ru/class.aspx?class=1821894698216843712","isCriteriaJournalType":false,"classTeacherUserId":"1771785","classTeacherChatUrl":"https://school.mosreg.ru/chat/user_1771785@xmpp.school.mosreg.ru","classTeacherJid":"user_1771785@xmpp.school.mosreg.ru","groupStaffPageUrl":"https://schools.school.mosreg.ru/class.aspx?class=1821894698216843712&view=members&group=staff","studyYear":2021,"parallel":10},"reportingPeriodGroup":{"id":"1849692448111006787","type":"Semester","periods":[{"id":"1849692448111017255","number":0,"type":"Semester","dateStart":"1630454400","dateFinish":"1640736000","studyYear":2021,"isCurrent":false},{"id":"1849692448111017256","number":1,"type":"Semester","dateStart":"1641772800","dateFinish":"1653955200","studyYear":2021,"isCurrent":true}]},"classTeacherAvatarUrl":null,"classTeacherName":"Забавнова Т. Ю.","haveActiveSubscription":null,"askHomeworkAvailable":false},"userContextInfo":{"sex":"Male","userId":"1000006042383","personId":"2000001769719","firstName":"Игорь","middleName":"Алексеевич","lastName":"Тарасов","name":"Игорь Тарасов","avatarUrl":null,"avatarMediumUrl":"https://static.school.mosreg.ru/images/avatars/user/a.m.jpg","isParent":false,"isParentCommitteeMember":null,"currentCultureCode":"ru-RU"},"askHomeworkAvailable":false,"groupParentsTopicEventKey":"school_49504_group_1821894698216843712_parents","educationType":"Regular"},"userLinks":{"currentContext":{"personId":"2000001769719","userId":"0","schoolId":"49504","groupId":"1821894698216843712","isParent":false}},"banners":{"right300X600":"&lt;div class=&quot;f4a09818738a4bef9f73599fbba26cae asyncRight300X600Banner&quot;&gt;&lt;div style=&quot;display:none;&quot;&gt;&amp;lt;!--В head сайта один раз подключите библиотеку--&amp;gt;\n&amp;lt;script src=&amp;quot;https://yastatic.net/pcode/adfox/loader.js&amp;quot; crossorigin=&amp;quot;anonymous&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;\n\n&amp;lt;!--AdFox START--&amp;gt;\n&amp;lt;!--Dnevnik.ru--&amp;gt;\n&amp;lt;!--Площадка: School.mosreg.ru / * / *--&amp;gt;\n&amp;lt;!--Тип баннера: 300*600--&amp;gt;\n&amp;lt;!--Расположение: &amp;lt;верх страницы&amp;gt;--&amp;gt;\n&amp;lt;div id=&amp;quot;adfox_152630409281376011&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;\n&amp;lt;script&amp;gt;\n    window.Ya.adfoxCode.create({\n        ownerId: 222314,\n        containerId: &amp;#39;adfox_152630409281376011&amp;#39;,\n        params: {\n            pp: &amp;#39;g&amp;#39;,\n            ps: &amp;#39;ccua&amp;#39;,\n            p2: &amp;#39;fsok&amp;#39;,\n            puid1: &amp;#39;16&amp;#39;, puid2: &amp;#39;M&amp;#39;, puid3: &amp;#39;STUDENT&amp;#39;, puid4: &amp;#39;1&amp;#39;, puid5: &amp;#39;N&amp;#39;, puid6: &amp;#39;N&amp;#39;, puid7: &amp;#39;50:137464&amp;#39;, puid8: &amp;#39;N&amp;#39;, puid9: &amp;#39;ComprehensiveSchool&amp;#39;, puid10: &amp;#39;N&amp;#39;, puid11: &amp;#39;P&amp;#39;, puid12: &amp;#39;N&amp;#39;, puid13: &amp;#39;Al4:Bio4:Che3:Eng4:Geo5:Geom4:Hi4:In5:Li4:Ma4:Obj5:Phe4:Phy3:Ru4:So4:WArt4&amp;#39;, puid14: &amp;#39;N&amp;#39;, puid15: &amp;#39;N&amp;#39;,  puid19: &amp;#39;63G&amp;#39;, puid20: &amp;#39;10K&amp;#39;, puid21: &amp;#39;N&amp;#39;, puid22: &amp;#39;ru-RU&amp;#39;, puid23: &amp;#39;1000006042383&amp;#39;, puid24: &amp;#39;N&amp;#39;, puid25: &amp;#39;N&amp;#39; } }); &amp;lt;/script&amp;gt;&lt;/div&gt;&lt;/div&gt;&lt;script&gt;$(document).ready(function () {let container=$(&quot;.f4a09818738a4bef9f73599fbba26cae&quot;);if(container.css(&quot;display&quot;)!==&quot;none&quot;){container.html($(&quot;.f4a09818738a4bef9f73599fbba26cae &gt; div&quot;).text());} });&lt;/script&gt;","mobile":""},"analytics":{"personId":"2000001769719","userId":"1000006042383","schoolId":"49504","groupId":"1821894698216843712","isCriteriaJournalType":false,"baseUrl":"https://mosreg.statusapp.ru/iframe"},"analyticsEnabled":true,"adUrl":"https://school.mosreg.ru/ad","chatEnabled":true,"feedbackUrl":"","paymentPageUrl":"http://school.mosreg.ru/billing/paidAccess/paymentPage","links":{"isUsefulLinksComponentVisible":true,"mobileUrlsEnabled":true,"mobileGooglePlayUrl":"https://redirect.appmetrica.yandex.com/serve/530822174081098032","mobileAppStoreUrl":"https://redirect.appmetrica.yandex.com/serve/314649391665312782","analyticsUrl":"https://mosreg.statusapp.ru/home?utm_source=mosreg&utm_medium=feed_new&utm_campaign=fastlink&userId=1000006042383"},"environmentPrefix":"MosReg","experiments":{"userFeedScroll":false,"parentCommittee":false,"userFeedMarksFinger":false,"postOnelove":false,"postReactions":false,"favoritesPost":false,"postReactionsClick":false,"postOnelike":false,"publicAutoSubscribe":false,"publicAutoSubscribeFeed":false,"postSurvey":false,"bestPublicInFeed":false,"share":false,"hideAds":false,"userCheckRecaptcha":false},"showParentCommitteeForm":false,"partnersRecommendationExperiments":[],"favoritesUrl":"https://school.mosreg.ru/favorites"};
+    window.__TALK__INITIAL__STATE__ = {"user":{"avatarLarge":null,"irrelevant":false,"created":false,"sex":"Male","isSystem":false,"schoolName":null,"classTeacher":null,"chatType":"NotSet","schoolId":"0","isArchiveContact":false,"affiliations":null,"isPooSchool":false,"isOdoSchool":false,"jid":"user_1000006042383@xmpp.school.mosreg.ru","type":"Personal","name":"Тарасов Игорь","isParentCommitteeMember":false,"shortName":"Тарасов И.","avatar":null,"avatarBackground":null,"unknown":false,"roles":["student"],"schoolIds":["49504"],"groups":{},"teacherGroups":{},"classTeacherGroups":[],"subjects":null,"profileUrl":"https://school.mosreg.ru/user/user.aspx?user=1000006042383"},"urls":{"messengerUrl":"https://school.mosreg.ru/chat?chatsource=tomsgwidget","faviconUrl":"https://static.school.mosreg.ru/img/icons/favicon_MosReg.ico","messengerFaviconUrl":"https://static.school.mosreg.ru/img/icons/messenger_favicon.ico","returnUrl":"https://school.mosreg.ru","logoUrl":"https://static.school.mosreg.ru/images/logo/MosReg/big_dnevnik.ru.png","termsUrl":"https://school.mosreg.ru/agreements/terms","host":"xmpp.school.mosreg.ru","multiUserChatHost":"muclight.xmpp.school.mosreg.ru","feedbackUrl":"https://ru.surveymonkey.com/r/RWTM7DL?id=1000006042383","asyncTaskApiUrl":"https://school.mosreg.ru","customChatsAvatarsUrl":"https://static.school.mosreg.ru/images/avatars/abstract","messengerArchive":null,"pollsApiUrl":"https://school.mosreg.ru/api/polls","pollsUrl":"https://school.mosreg.ru/polls","parentCommitteeApiUrl":"https://school.mosreg.ru/api/parentcommittee","chatUrl":"https://school.mosreg.ru/chat","apiUrl":"https://school.mosreg.ru/chat/api","mongooseBoshHost":"https://xmpp1.school.mosreg.ru/http-bind","mongooseWSHost":"wss://xmpp1.school.mosreg.ru/ws-xmpp","useBosh":false},"environmentPrefix":"MosReg","metrika":{"userId":"1000006042383","role":"student","source":null,"page":"userfeed"},"attachmentHosts":["","attachments.school.mosreg.ru"],"inactiveTabConnectionTimeoutSeconds":1800,"inboxPollingIntervalSeconds":600,"keepAliveInterval":300,"credentialsPollInterval":300,"userExperiments":{"survey":false,"msgCloseButton":false,"onlineStatus":false,"parentCommittee":false,"fastFilters":false,"noCloseContacts":false,"hideAds":false,"schoolsInCustomChatsExperiment":[]},"unreadCount":0,"unreadRoles":[],"rosterVersioningEnabled":true,"rosterCacheTTL":432000,"messageStatusesEnabled":true,"showAppLinks":true,"showParentCommitteeForm":false,"schoolsInfo":[{"id":"49504","name":"МОУСиньковская средняя общеобразовательная школа№2","isOdoSchool":false,"isPooSchool":false}]};
+    window.__TALK__STUB__INITIAL__STATE__ = "https://school.mosreg.ru/chat"
+    window.__MEDIA_WIDGET__INITIAL__STATE__ = {"apiUrl":"https://attachments.school.mosreg.ru/api","officeOnlineBaseUrl":"https://school.mosreg.ru/office","officeOnlineAvailableExtensions":[],"maxUploadFileSize":"20971520","maxUploadFileSizeMessage":"(до 20 МБ)","gridPreviewExperiment":false};
+    window.__PUBLIC__CLUBS__INITIAL__STATE__ = {"clubId":null,"apiUrl":"https://school.mosreg.ru/api/communities","environmentPrefix":"MosReg","defaultBackgroundImageUrl":"https://static.school.mosreg.ru/images/publicClubs/default_background.png","metrika":{"page":"userfeed"}}
+    window.apiUrls = {
+        ...window.apiUrls,
+        feed: "https://school.mosreg.ru/api/userfeed/posts",
+        posts: "https://school.mosreg.ru/api/posts",
+        userLink: "https://school.mosreg.ru/api/userfeed/",
+        parentcommittee: "https://school.mosreg.ru/api/parentcommittee",
+        analytics: "https://mosreg.statusapp.ru/iframe",
+        publicclub: "https://school.mosreg.ru/api/communities",
+        userKeyValueStorage: "https://school.mosreg.ru/api/storage",
+    }
+    window.__COMPLAINT__INITIAL__STATE__ = {"apiUrl":"https://school.mosreg.ru/api"};
+
+        function fitToParent(element) {
+            var parent = element.parentElement;
+            parent.style.visibility = 'visible';
+            if (window.matchMedia('(max-width: 620px)').matches) {
+                var scale = parent.clientWidth / element.clientWidth;
+                var parentHeight = element.clientHeight * scale;
+                element.style.transformOrigin = "0 0";
+                element.style.transform = `scale(${ scale})`;
+                parent.style.height = `${ parentHeight} px`;
+            } else {
+                element.style.transform = 'none';
+                parent.style.height = `${ element.clientHeight} px`;
+            }
+        }
+
+        function resizeHeader() {
+            requestAnimationFrame(function() {
+                fitToParent(document.getElementsByClassName('page-header')[0]);
+            });
+        }
+
+        window.addEventListener("DOMContentLoaded", resizeHeader);
+        window.addEventListener("resize", resizeHeader);
+</script>
+<script src="https://static.school.mosreg.ru/client/user_start_page.js?v=e3257b35" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://static.school.mosreg.ru/client/survey_form.css?v=9f4f0983" type="text/css" />
+    <script src="https://static.school.mosreg.ru/client/survey_form.js?v=297dfa80" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://static.school.mosreg.ru/client/push_notifications.css?v=bdaf085b" type="text/css" />
+    <script src="https://static.school.mosreg.ru/client/push_notifications.js?v=e7ae962b" type="text/javascript"></script>
+
+        <div class="page-footer page-footer_auth" id="">
+            <div class="page-footer__banner">
+                <div class="24c8f51060634825bd7697708cae74a5 asyncBottom728x90Banner"><div style="display:none;">&lt;!--В head сайта один раз подключите библиотеку--&gt;
+&lt;script src=&quot;https://yastatic.net/pcode/adfox/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;!--AdFox START--&gt;
+&lt;!--Dnevnik.ru--&gt;
+&lt;!--Площадка: School.mosreg.ru / * / *--&gt;
+&lt;!--Тип баннера: 728х90--&gt;
+&lt;!--Расположение: &lt;верх страницы&gt;--&gt;
+&lt;div id=&quot;adfox_1484145910669155&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+    window.Ya.adfoxCode.createScroll({
+        ownerId: 222314,
+        containerId: &#39;adfox_1484145910669155&#39;,
+        params: {
+            pp: &#39;g&#39;,
+            ps: &#39;ccua&#39;,
+            p2: &#39;ewtf&#39;,
+            puid1: &#39;16&#39;, puid2: &#39;M&#39;, puid3: &#39;STUDENT&#39;, puid4: &#39;1&#39;, puid5: &#39;N&#39;, puid6: &#39;N&#39;, puid7: &#39;50:137464&#39;, puid8: &#39;N&#39;, puid9: &#39;ComprehensiveSchool&#39;, puid10: &#39;N&#39;, puid11: &#39;P&#39;, puid12: &#39;N&#39;, puid13: &#39;Al4:Bio4:Che3:Eng4:Geo5:Geom4:Hi4:In5:Li4:Ma4:Obj5:Phe4:Phy3:Ru4:So4:WArt4&#39;, puid14: &#39;N&#39;, puid15: &#39;N&#39;,  puid19: &#39;63G&#39;, puid20: &#39;10K&#39;, puid21: &#39;N&#39;, puid22: &#39;ru-RU&#39;, puid23: &#39;1000006042383&#39;, puid24: &#39;N&#39;, puid25: &#39;N&#39; } }); &lt;/script&gt;</div></div><script>$(document).ready(function () {let container=$(".24c8f51060634825bd7697708cae74a5");if(container.css("display")!=="none"){container.html($(".24c8f51060634825bd7697708cae74a5 > div").text());} });</script>
+                
+            </div>
+        <div class="page-footer__content">
+            <div class="page-footer__menu-layout ">
+                    <ul class="page-footer__menu">
+                        <li class="page-footer__menu-item">
+                            <a href="https://school.mosreg.ru/about" title="Подробнее о системе &#171;Школьный портал&#187;" class="page-footer__menu-link">О проекте</a>
+                        </li>
+                        <li class="page-footer__menu-item">
+                            <a href="https://school.mosreg.ru/news" title="Пресс-центр" class="page-footer__menu-link">Новости</a>
+                        </li>
+                        <li class="page-footer__menu-item">
+                            <a href="https://helpschool.mosreg.ru/" target="_blank" title="Служба поддержки" class="page-footer__menu-link page-footer__menu-link_support">Служба поддержки</a>
+                        </li>
+                        <li class="page-footer__menu-item">
+                            <a href="https://school.mosreg.ru/contacts" title="Служба поддержки" class="page-footer__menu-link">Контакты</a>
+                        </li>
+                    </ul>
+                <div class="page-footer__statistics">
+                                    </div>
+
+            </div>
+
+                <div class="page-footer__mobile-app-links">
+                    <div class="page-footer__mobile-app-links_header">
+                        Мобильное приложение
+                    </div>
+                    <div>
+                        <a target="_blank" href="https://redirect.appmetrica.yandex.com/serve/314649391665312782" class="page-footer__mobile-app-links__badge">
+                            <img class="page-footer__mobile-app-links__badge_img" src="https://static.school.mosreg.ru/images/storebadges/appstore/AppStore_ru-RU.svg"/>
+                        </a>
+                        <a target="_blank" href="https://redirect.appmetrica.yandex.com/serve/530822174081098032" class="page-footer__mobile-app-links__badge">
+                            <img class="page-footer__mobile-app-links__badge_img" src="https://static.school.mosreg.ru/images/storebadges/googleplay/GooglePlay_ru-RU.svg"/>
+                        </a>
+                    </div>
+                </div>
+
+            <div class="page-footer__copyright-layout">
+                <a href="https://school.mosreg.ru/terms/" class="page-footer__copyright-layout-agreement">Пользовательское соглашение</a>
+                <div class="page-footer__copyright-layout-details">
+                                            <span class="page-footer__age-category">
+                        6+
+                        <div class="page-footer__age-category-buble">
+                            Информация, размещенная в системе &quot;Школьный портал&quot;, относится к информационной продукции, допускаемой к обороту для детей, достигших возраста шести лет в соответствии со ст. 8 
+                            <a href="https://helpschool.mosreg.ru/hc/ru/articles/206642577" target="_blank" class="page-footer__age-category-buble-link">ФЗ №436 от 29.12.2010 г.</a>
+                        </div>
+                        </span>
+                        <div class="page-footer__age-category-block">
+                            Информация, размещенная в системе &quot;Школьный портал&quot;, относится к информационной продукции, допускаемой к обороту для детей, достигших возраста шести лет в соответствии со ст. 8 
+                            <a href="https://helpschool.mosreg.ru/hc/ru/articles/206642577" target="_blank" class="page-footer__age-category-buble-link">ФЗ №436 от 29.12.2010 г.</a>
+                        </div>
+                    <p class="page-footer__copyright-layout__terms">&#169; 2015-2022 &quot;Московская область&quot;</p>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            require(['blocks/footerCopyright/footerCopyright'],
+                function () {
+                });
+        </script>
+            </div>
+<div class="clear"></div>    <!-- tns-counter.ru --><script type="text/javascript">
+        (new Image()).src = '//www.tns-counter.ru/V13a***R&gt;' + document.referrer.replace(/\*/g,'%2a') + '*dnevnik_ru/ru/UTF-8/tmsec=schoolmosreg_total/' + Math.round(Math.random()*1E9);
+        </script><noscript><img src="http://www.tns-counter.ru/V13a****dnevnik_ru/ru/UTF-8/tmsec=schoolmosreg_total/" width="1" height="1" alt="" /></noscript><!--/ tns-counter.ru -->
+    <script type="text/javascript">
+    require(['yandexMetrika/yandexMetrikaCounter']);
+    require(['analytics/commonYaMetrika']);
+</script>
+<noscript>
+    <div>
+            <img src="//mc.yandex.ru/watch/17969140" style="position: absolute; left: -9999px;" alt=""/>
+            <img src="//mc.yandex.ru/watch/29822639" style="position: absolute; left: -9999px;" alt=""/>
+            <img src="//mc.yandex.ru/watch/87535390" style="position: absolute; left: -9999px;" alt=""/>
+    </div>
+</noscript>
+
+    
+
+</body>
+</html>
