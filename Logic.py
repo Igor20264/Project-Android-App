@@ -3,6 +3,13 @@ import json
 import random
 import logs
 import requests
+from datetime import datetime
+import locale
+locale.setlocale(
+    category=locale.LC_ALL,
+    locale="Russian"  # Note: do not use "de_DE" as it doesn't work
+)
+
 
 def getInternet():
     """вход с паролем"""
@@ -128,14 +135,15 @@ class Sessions:
         self.session = requests.Session()
 
         try:
-            if self.internet:
-                if not debug:
-                    try:
-                        self.__login_with_pass()
-                    except:
-                        self.__login()
-                    if not os.path.exists('files/profil.jpg'):
-                        self.__get_image()
+            if self.internet and not debug:
+                try:
+                    log.add('Connect via cookies','None','None')
+                    self.__login_with_pass()
+                except:
+                    log.add('Connect via Data', 'None', 'None')
+                    self.__login()
+                if not os.path.exists('files/profil.jpg'):
+                    self.__get_image()
         except:
             try:
                 log.add("No connect to server", "Internet", "Exception")
@@ -207,7 +215,6 @@ class Sessions:
 
     def __MainParseMini(self, quotes):
         a = quotes.text.strip().splitlines()
-
         asd = []
         for i in a:
             if i == "" or len(i)<300:
@@ -230,15 +237,19 @@ class Sessions:
                 return a
 
             from bs4 import BeautifulSoup
-            #mainpage = self.session.get('https://school.mosreg.ru/feed')
-            with open("hasd.html",'r')as f:
-                mainpage = f.read()
-            #soup = BeautifulSoup(mainpage.text, 'lxml')
-            soup = BeautifulSoup(mainpage, 'lxml')
-            quotes = soup.find_all('script')
-            self.__MainParseMini(quotes[27])
+            mainpage = self.session.get('https://school.mosreg.ru/feed')
+            with open("hasd.html",'w',encoding="utf-8")as f:
+                #mainpage = f.read()
+                f.write(mainpage.text)
+            soup = BeautifulSoup(mainpage.text, 'lxml')
 
-        except Exception as e:
+            #soup = BeautifulSoup(mainpage, 'lxml')
+            quotes = soup.find_all('script')
+            for i in quotes:
+                if 'window.__SURVEY_FORM_INITIAL_STATE__' in i.text:
+                    self.__MainParseMini(i)
+
+        except FileNotFoundError as e:
             try:
                 log.add(e,'Warning','Zero')
                 with open("files/backup.dit", "r") as f:
@@ -278,7 +289,10 @@ class Sessions:
             hz = b['subject']['knowledgeArea']
             type = b['markType']
             typework = b['markTypeText']
-            date = b['date']
+            date = int(b['date'])
+
+            date=datetime.fromtimestamp(date)
+            date = date.strftime(f"%B")[:4] + " " + date.strftime('%d')
             marks.append(
                 {'predmet': predmet, 'typework': typework, 'value': value, 'date': date})
             # Это всё подрят
