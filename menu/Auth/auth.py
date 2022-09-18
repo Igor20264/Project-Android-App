@@ -43,9 +43,9 @@ class auth:
                 d = session.post('https://uslugi.mosreg.ru/api/school/user/login', loggindat)
                 #a = session.get('https://school.mosreg.ru/userfeed/')
                 if d.status_code == 200:
-                    with open("data_file.json", "w") as write_file:
+                    with open("files/data_file.json", "w") as write_file:
                         json.dump(loggindat, write_file)
-                    self.sm.current = 'auth1'
+                    self.sm.current = 'data'
             else:
 
                 print(self.user.text)

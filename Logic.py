@@ -65,9 +65,6 @@ class Sessions_Lite:
                 log.add(e, "Internet", "Exception")
 
     def DzApi(self, date):
-        """получение дз\n
-        date=2022-02-11
-        """
         apijson = self.session.get(
             f'https://school.mosreg.ru/api/feed/schedule/{self.personId}/{self.shoolsId}/{date}/').json()
         returns = []
@@ -172,7 +169,7 @@ class Sessions:
                 with open('files/data_file.json') as f:
                     self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f),
                                       proxies=self._dist)
-                self.cookies()
+                self.__cookies()
             else:
                 log.add("Ошибка отсутствует файл с поролем", "Internet", "Exception")
         except Exception as e:
@@ -243,7 +240,7 @@ class Sessions:
 
         except Exception as e:
             try:
-                print(e)
+                log.add(e,'Warning','Zero')
                 with open("files/backup.dit", "r") as f:
                     self.parsed = a = json.load(f)
                 log.add("Загружен с бекапа оценок", "Not exist", "Normal important")
