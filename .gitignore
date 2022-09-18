@@ -4,6 +4,5 @@
 *.jpg
 *.html
 *.cookies
-log
 *.logs
 __pycache__
