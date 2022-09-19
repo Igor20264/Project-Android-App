@@ -89,4 +89,4 @@ class Sessions_Lite:
 
     def __userparse(self):
         b = self.parsed
-        self.personId,self.shoolsId = b['analytics']["personId"],b['analytics']["schoolId"]
+        self.personId,self.shoolsId = b[0]['analytics']["personId"],b[0]['analytics']["schoolId"]

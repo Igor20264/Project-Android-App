@@ -7,7 +7,8 @@ from kivymd.uix.picker import MDDatePicker
 
 from menu.homepage.cardDz import carddZ
 
-from Logic import Sessions_Lite,getInternet
+from Logic import getInternet
+from Logic_Lite import Sessions_Lite
 #
 #MDRoundFlatButton
 Builder.load_string("""

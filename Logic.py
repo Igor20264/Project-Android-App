@@ -130,6 +130,7 @@ class Sessions:
         self.parsed = json.loads(string.replace("'", '"'))
         self.parsed_user = json.loads(string_user.replace("'", '"'))
         self.save_backup()
+
     def __MainParse(self):
         try:
             from bs4 import BeautifulSoup
@@ -188,122 +189,6 @@ class Sessions:
                 {'type': 'mark', 'predmet': predmet, 'typework': typework, 'value': value,
                  'date': date})
         return [marks, None, dates]
-
-    def __feedparse_old(self):
-        marks = []  # оценки
-        kent = []  # контрольные
-        dates = []  # всё подрят
-
-        WeekSummary = 0
-        ImportantWork = 0
-
-        _dict = {'type': None, 'order': None, 'id': None, 'date': None, 'content': None, 'mobileAdvSettings': None}
-
-        def Mark():
-            try:
-                if len(b['content']['marks']) > 1:
-                    value = [i['value'] for i in b['content']['marks']]
-                else:
-                    value = b['content']['marks'][0]['value']  # оценка
-
-                typework = b['content']['work']['name']  # тип работы
-                predmet = b['content']['subject']['name']  # предмет
-                power = b['content']['work']['workType']['value']  # сила влияния
-                date = b['date']  # Дата
-
-            except Exception as e:
-                text = b['content']['comment']['text']
-                author = b['content']['comment']['author']
-                predmet = b['content']['subject']['name']
-                dates.append({'type': 'comment','predmet': predmet,'text':text,'autor':author})
-            else:
-                # Это для запроса оценок
-                marks.append(
-                    {'predmet': predmet, 'typework': typework, 'value': value, 'power': power, 'date': date})
-                # Это всё подрят
-                dates.append(
-                    {'type': 'mark', 'predmet': predmet, 'typework': typework, 'value': value, 'power': power,
-                     'date': date})
-
-        def ImortantWork():
-            obj = b['content']['works']
-            for item in obj:
-                targetDate = item['targetDate']  # когда
-                typework = item['name']  # тип работы
-                predmet = item['subject']  # предмет
-                url = item['url']
-                # Ближайшие кр
-                kent.append({'targetDate': targetDate, 'typework': typework, 'predmet': predmet, 'url': url})
-                # Это всё подрят
-                dates.append(
-                    {'type': 'imwork', 'targetDate': targetDate,'typework': typework, 'predmet': predmet, 'url': url})
-
-        def WeekSum():
-            effcit = []  # оценки за неделю
-            effecit = []  # оценки за неделю ТО что надо исправить
-            for item in b['content']['averageSubjects']:
-                predmet = item['subjectName']
-                # Оценки полученные за неделю (прошедшию) print(item['marks'])
-                try:
-                    for ite in item['averageMarks']:
-                        try:
-                            value = ite['value']
-                            trend = ite['trend']
-                        except:
-                            log.add(f'Оценка отсутствует', 'weekly ass', 'No influence')
-                            value = None
-                            trend = None
-                        effcit.append({'predmet': predmet, 'value': value, 'trend': trend})
-                except:
-                    log.add(f'Ошибка обработки', 'weekly ass', 'No influence')
-            try:
-                for item in b['content']['badSubjects']:
-                    predmet = item['subjectName']
-                    value = item['average']['value']
-                    effecit.append({'predmet': predmet, 'value': value})
-            except:
-                log.add(f'Ошибка обработки', 'weekly ass', 'No influence')
-                effecit = [{'predmet': "Молодец", 'value': "Так держать"},
-                           {'predmet': "Молодец", 'value': "Так держать"},
-                           {'predmet': "Молодец", 'value': "Так держать"}]
-            # Это всё подрят
-            dates.append({'type': 'weksum', 'normal': effcit, 'critical': effecit})
-            return effecit,effcit
-        #print(self.parsed['userMarks']['children'][0]['marks'].keys())
-        for b in self.parsed['userMarks']['children'][0]['marks']:
-            if b.keys() == _dict.keys() and(not b['type'] == 'ManyHomeworks' and not b['type'] == 'FeedFinished'):
-                if b['type'] == "Mark":  # оценка
-                    Mark()
-
-                elif b['type'] == 'ImportantWork' and ImportantWork < 1:  # ближайшие контрольные - проверочные
-                    ImportantWork += 1
-                    ImortantWork()
-
-                elif b['type'] == 'WeekSummary' and WeekSummary < 1:
-                    WeekSummary += 1
-                    effecit, effcit = WeekSum()
-
-                elif b['type'] == 'FinalMark':
-                    date = b['date']
-                    value = b["content"]["marks"][0]['value']
-                    predmet = b["content"]["subject"]['name']
-                    type = b["content"]['work']['name']
-
-                    # Это всё подрят
-                    dates.append(
-                        {'type': 'FinalMark', 'predmet': predmet, 'typework': type, 'value': value, 'power': None,
-                         'date': date})
-
-                else:
-                    if b['type'] == "WeekSummary" or b['type'] == "ImportantWork" or b['type'] == 'FinalMark':
-                        pass
-                    else:
-                        log.add(f'Новый тип | {b["type"]}|', 'New type', 'Very important')
-
-            else:
-                pass
-                #print("Ошибка",b)
-        return [marks, kent, dates, effcit, effecit]
 
     def __userparse(self):
         a = self.parsed_user
