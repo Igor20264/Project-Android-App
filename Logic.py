@@ -30,7 +30,6 @@ class Sessions:
     _dist = {"http": _proxy[random.randint(0, 1)]}
 
     def __init__(self, debug=False,internet=True):
-        import os
         import requests
 
         self.debug = debug
