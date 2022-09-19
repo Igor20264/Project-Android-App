@@ -5,15 +5,14 @@ import logs
 import requests
 from datetime import datetime
 import locale
+
 locale.setlocale(
     category=locale.LC_ALL,
     locale="Russian"  # Note: do not use "de_DE" as it doesn't work
 )
 
-
 def getInternet():
     """вход с паролем"""
-    import os
     try:
         a = requests.post('https://uslugi.mosreg.ru/api/school/user/login',timeout=100)
         if a.status_code == 405:
@@ -25,96 +24,6 @@ def getInternet():
 
 log = logs.Logs('Logic.py')
 
-class Sessions_Lite:
-    _proxy = ["http://141.101.123.24:80", "http://203.30.191.33:80"]
-    _dist = {"http": _proxy[random.randint(0, 1)]}
-
-    def __init__(self,internet=True):
-        import requests
-
-        if internet:self.internet = True
-        else:self.internet = False
-
-        self.session = requests.Session()
-
-        try:
-            if self.internet:self.__login_with_pass()
-        except:
-            try:
-                self.__MainParse()
-                self.__userparse()
-            except:exit()
-        else:
-            self.__MainParse()
-            self.__userparse()
-
-    def __login_with_pass(self):
-        """Вход без пароля"""
-        try:
-            import pickle
-            with open('files/somefile.cookies', 'rb') as f:
-                self.session.cookies.update(pickle.load(f))
-                aa = self.session.get(url='https://school.mosreg.ru/feed/')
-            if aa.headers['Cache-Control'] != "private, s-maxage=0":
-                raise Exception('Ошибка во время входа в шп по куки файлам')
-        except:
-            import os
-            try:
-                if os.path.exists('files/data_file.json'): # Получаем даныне пользователя
-                    with open('files/data_file.json') as f:
-                        self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f),
-                                          proxies=self._dist) #Отправляем запрос для авторизации.
-                        # Ответ приходит в виде куки (печеньки с англ.)
-                else:
-                    log.add("Ошибка отсутствует файл с поролем", "Internet", "Exception")
-                    exit()
-            except Exception as e:
-                log.add(e, "Internet", "Exception")
-
-    def DzApi(self, date):
-        apijson = self.session.get(
-            f'https://school.mosreg.ru/api/feed/schedule/{self.personId}/{self.shoolsId}/{date}/').json()
-        returns = []
-        for i in apijson['response']['items']:
-            lesson = i['subject']
-            homework = i['homeworkText']
-            kabinet = i['schedulePlace']
-            timelesson = i['lessonTime']
-            url = i['lessonUrl']
-            returns.append([lesson, homework, kabinet, timelesson, url])
-        return returns
-
-    def __MainParseMini(self, quotes):
-        a = quotes.text.strip().splitlines()
-        asd = []
-        for i in a:
-            if i == "" or len(i)<300:
-                pass
-            else:
-                asd.append(i.strip())
-        string = asd[0][47:len(asd[0])-1]
-        self.parsed = json.loads(string.replace("'", '"'))
-
-    def __MainParse(self):
-        try:
-            from bs4 import BeautifulSoup
-            mainpage = self.session.get('https://school.mosreg.ru/feed')
-            soup = BeautifulSoup(mainpage.text, 'lxml')
-
-            quotes = soup.find_all('script')
-            self.__MainParseMini(quotes[27])
-        except:
-            try:
-                with open("files/backup.dit", "r") as f:
-                    self.parsed = json.load(f)
-            except:
-                exit()
-        return self.parsed
-
-    def __userparse(self):
-        b = self.parsed
-        self.personId,self.shoolsId = b['analytics']["personId"],b['analytics']["schoolId"]
-
 
 class Sessions:
     _proxy = ["http://141.101.123.24:80", "http://203.30.191.33:80"]
@@ -124,37 +33,22 @@ class Sessions:
         import os
         import requests
 
-        # Проверка на отладку
-        if debug:self.debug = True
-        else:self.debug = False
-
-        if internet:self.internet = True
-        else:self.internet = False
+        self.debug = debug
+        self.internet = internet
 
         # Создание сессии
         self.session = requests.Session()
 
-        try:
-            if self.internet and not debug:
-                try:
-                    log.add('Connect via cookies','None','None')
-                    self.__login_with_pass()
-                except:
-                    log.add('Connect via Data', 'None', 'None')
-                    self.__login()
-                if not os.path.exists('files/profil.jpg'):
-                    self.__get_image()
-        except:
+        if self.internet:
             try:
-                log.add("No connect to server", "Internet", "Exception")
-                self.__MainParse()
-                self.__userparse()
-            except Exception as e:
-                log.add(f"Ошибка в коде:\n{e}", "Not exist", "Normal important")
-                exit()
-        else:
+                self.__login_with_pass()
+            except:
+                self.__login()
+
             self.__MainParse()
             self.__userparse()
+        else:
+            self.load_backup()
 
     def __login_with_pass(self):
         """Вход без пароля"""
@@ -213,6 +107,16 @@ class Sessions:
         with open('files/profil.jpg', 'wb') as f:
             f.write(image.content)
 
+    def save_backup(self):
+        with open("files/backup.dit", "w") as f:
+            json.dump([self.parsed,self.parsed_user], f)
+
+    def load_backup(self):
+        with open("files/backup.dit", "r") as f:
+            a = json.load(f)
+            self.parsed = a[0]
+            self.parsed_user = a[1]
+
     def __MainParseMini(self, quotes):
         a = quotes.text.strip().splitlines()
         asd = []
@@ -225,40 +129,24 @@ class Sessions:
         string = asd[0][47:len(asd[0])-1]
         self.parsed = json.loads(string.replace("'", '"'))
         self.parsed_user = json.loads(string_user.replace("'", '"'))
-        with open("files/backup.dit", "w") as f:
-            json.dump(self.parsed, f)
-
+        self.save_backup()
     def __MainParse(self):
         try:
-            if self.debug:
-                with open("files/backup.dit", "r") as f:
-                    self.parsed = a = json.load(f)
-                log.add("Загружен с бекапа оценок", "Not exist", "except")
-                return a
-
             from bs4 import BeautifulSoup
             mainpage = self.session.get('https://school.mosreg.ru/feed')
-            with open("hasd.html",'w',encoding="utf-8")as f:
-                #mainpage = f.read()
-                f.write(mainpage.text)
             soup = BeautifulSoup(mainpage.text, 'lxml')
-
-            #soup = BeautifulSoup(mainpage, 'lxml')
-            quotes = soup.find_all('script')
-            for i in quotes:
+            for i in soup.find_all('script'):
                 if 'window.__SURVEY_FORM_INITIAL_STATE__' in i.text:
                     self.__MainParseMini(i)
 
-        except FileNotFoundError as e:
-            try:
-                log.add(e,'Warning','Zero')
+            if self.internet == False:
                 with open("files/backup.dit", "r") as f:
-                    self.parsed = a = json.load(f)
-                log.add("Загружен с бекапа оценок", "Not exist", "Normal important")
-            except Exception as e:
-                log.add(e, "Not exist", "Normal important")
-                exit()
-            return a
+                    self.parsed = json.load(f)
+                with open('files/backups.dit', "r")as f:
+                    self.parsed_user = json.load(f)
+        except Exception as e:
+            log.add(e, "Not exist", "Normal important")
+            exit()
         return self.parsed
 
     def feedparse(self):
