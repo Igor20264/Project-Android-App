@@ -70,6 +70,7 @@ class listen:
     def __init__(self,sess,date):
         self.liste = sess.DzApi(date=date)
     def build(self):
+        perms = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
         grid = MDList()
         for i in self.liste:
             predmet = i[0]
@@ -78,7 +79,7 @@ class listen:
             timee = i[3]
             url = i[4]
             ad = carddZ()
-            if len(dz) >= 3:
+            if len(dz) >= 5:
                 grid.add_widget(ad.boxdze(url=url,predmet=predmet, dz=dz, kab=kab,timee=timee))
             elif setting == True:
                 grid.add_widget(ad.boxdze(url=url,predmet=predmet, dz=dz, kab=kab,timee=timee))

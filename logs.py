@@ -11,6 +11,7 @@ class Logs:
         self.time = str(times[0]) + "_" + str(times[1]) + "_" + str(times[2]) + "-" + str(times[3]) + ";" + str(times[4])+ ";" + str(times[5])
         with open(f"log/{self.time}-{self.locate}.logs", 'w') as f:
             f.write(f"")
+        self.Logschek()
 
     def add(self,text,type,priority):
         with open(f"log/{self.time}-{self.locate}.logs", 'a')as f:
