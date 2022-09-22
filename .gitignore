@@ -6,3 +6,4 @@
 *.cookies
 *.logs
 __pycache__
+venv

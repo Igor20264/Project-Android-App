@@ -3,26 +3,20 @@ import time
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import MDList
-from kivymd.uix.picker import MDDatePicker
+from kivymd.uix.pickers import MDDatePicker
 
 from menu.homepage.cardDz import carddZ
 
 from Logic import getInternet
 from Logic_Lite import Sessions_Lite
-#
-#MDRoundFlatButton
+
 Builder.load_string("""
 <caledare@BoxLayout>:
     orientation:"vertical"
-    MDToolbar:
-        title: "Домашнее задание на"
-        MDRoundFlatButton:
-            id: datee
-            text: "Дата"
-            text_color: app.theme_cls.accent_color
-            line_color: app.theme_cls.accent_color
-            pos_hint: {'center_x': .5, 'center_y': .5}
-            on_release: root.show_date_picker()
+    MDTopAppBar:
+        title: "Домашнее задание"
+        right_action_items:
+            [["calendar-range",lambda x: root.show_date_picker(),"Выбрать дату","mdiCalendarRange"],]
     ScrollView:
         id: ScrView
 """)
@@ -46,16 +40,13 @@ class caledare(BoxLayout):
             self.listen = listen(sess=self.sess, date=cuc)
             self.ids.ScrView.add_widget(self.listen.build())
             self.date = cuc
-            self.ids.datee.text = self.date
 
 
     def on_save(self, instance,value,date_range):
         self.date = value
-        self.ids.datee.text = str(self.date)
         self.list_remove()
 
     def list_remove(self):
-        self.ids.datee.text = str(self.date)
         self.ids.ScrView.remove_widget(self.ids.ScrView.children[0])
         self.listen = listen(sess=self.sess,date=self.date)
         self.ids.ScrView.add_widget(self.listen.build())
@@ -70,7 +61,6 @@ class listen:
     def __init__(self,sess,date):
         self.liste = sess.DzApi(date=date)
     def build(self):
-        perms = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
         grid = MDList()
         for i in self.liste:
             predmet = i[0]

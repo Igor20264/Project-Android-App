@@ -3,7 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.scrollview import ScrollView
 from kivymd.uix.bottomnavigation import MDBottomNavigationItem
 from kivymd.uix.list import ThreeLineListItem, MDList
-from kivymd.uix.toolbar import MDToolbar
+from kivymd.uix.toolbar import MDTopAppBar
 
 from menu.mainpage.dialogs import dialog
 data = False
@@ -85,9 +85,9 @@ class mainpage:
 
         mainpage = MDBottomNavigationItem(name='screen 1', text='Main', icon='home')
         #mainpage =BoxLayout(orientation='vertical')
-        mainpage.md_bg_color = (255 / 255, 186 / 255, 3 / 255, 1)
-        tools = MDToolbar(title="Последние оценки")
-        tools.right_action_items=[["dots-vertical", lambda x: dial.open()]]
+        #mainpage.md_bg_color = (255 / 255, 186 / 255, 3 / 255, 1)
+        tools = MDTopAppBar(title="Последние оценки")
+        #tools.right_action_items=[["dots-vertical", lambda x: dial.open()]]
         self.types()
 
         dathe = ScrollView()
