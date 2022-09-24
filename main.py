@@ -34,7 +34,7 @@ class MainApp(MDApp):
             self.SM.current = 'data' # Переключаем октивное окно
             import menus
             #self.sess = Sessions(internet=False) # Вызываем класс для работы со школьным порталом
-            self.sess = Sessions(internet=False)
+            self.sess = Sessions()
             men = menus.menu() #Вызываем функцию для создания эскизов
             self.screen1.add_widget(men.build(self.sess)) # Добавлям собранные эскизы на экран.
 

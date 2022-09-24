@@ -1,7 +1,9 @@
 import json
+import os
 import random
-import logs
-log = logs.Logs('Logic.py')
+from kivy.logger import Logger
+import pickle
+from bs4 import BeautifulSoup
 
 class Sessions_Lite:
     _proxy = ["http://141.101.123.24:80", "http://203.30.191.33:80"]
@@ -13,39 +15,34 @@ class Sessions_Lite:
 
         self.session = requests.Session()
 
-        try:
-            if self.internet:self.__login_with_pass()
-        except:
-            try:
-                self.__MainParse()
-                self.__userparse()
-            except:exit()
+        if self.internet:
+            self.__login()
+            self.__MainParse()
+            self.__userparse()
         else:
             self.__MainParse()
             self.__userparse()
 
-    def __login_with_pass(self):
+    def __login(self):
         """Вход без пароля"""
-        try:
-            import pickle
+        if os.path.exists('files/somefile.cookies'):
             with open('files/somefile.cookies', 'rb') as f:
                 self.session.cookies.update(pickle.load(f))
-                aa = self.session.get(url='https://school.mosreg.ru/feed/')
+            aa = self.session.get(url='https://school.mosreg.ru/feed/')
             if aa.headers['Cache-Control'] != "private, s-maxage=0":
-                raise Exception('Ошибка во время входа в шп по куки файлам')
-        except:
-            import os
-            try:
-                if os.path.exists('files/data_file.json'): # Получаем даныне пользователя
-                    with open('files/data_file.json') as f:
-                        self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f),
-                                          proxies=self._dist) #Отправляем запрос для авторизации.
-                        # Ответ приходит в виде куки (печеньки с англ.)
-                else:
-                    log.add("Ошибка отсутствует файл с поролем", "Internet", "Exception")
-                    exit()
-            except Exception as e:
-                log.add(e, "Internet", "Exception")
+                Logger.error('Ошибка во время входа в шп по куки файлам')
+            else:
+                return None
+        else:
+            Logger.warn(f"Login: Отсутствует файл с куки")
+
+        if os.path.exists('files/data_file.json'):
+            with open('files/data_file.json') as f:
+                self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f), proxies=self._dist)
+            return None
+        else:
+            Logger.error(f"Login: Отсутствует файл с данными")
+            raise FileNotFoundError("Ошибка отсутствует файл с данными")
 
     def DzApi(self, date):
         apijson = self.session.get(
@@ -60,33 +57,29 @@ class Sessions_Lite:
             returns.append([lesson, homework, kabinet, timelesson, url])
         return returns
 
-    def __MainParseMini(self, quotes):
-        a = quotes.text.strip().splitlines()
-        asd = []
-        for i in a:
-            if i == "" or len(i)<300:
-                pass
-            else:
-                asd.append(i.strip())
-        string = asd[0][47:len(asd[0])-1]
-        self.parsed = json.loads(string.replace("'", '"'))
-
     def __MainParse(self):
-        try:
-            from bs4 import BeautifulSoup
+        if self.internet == False:
+            with open("files/backup.dit", "r") as f:
+                self.parsed = json.load(f)
+        else:
             mainpage = self.session.get('https://school.mosreg.ru/feed')
-            soup = BeautifulSoup(mainpage.text, 'lxml')
-
-            quotes = soup.find_all('script')
-            self.__MainParseMini(quotes[27])
-        except:
             try:
-                with open("files/backup.dit", "r") as f:
-                    self.parsed = json.load(f)
+                soup = BeautifulSoup(mainpage.text, 'lxml')
             except:
-                exit()
-        return self.parsed
+                Logger.warn(f"Parser_Lite: Установите lxml для более быстрой работы")
+                soup = BeautifulSoup(mainpage.text, "html.parser")
+
+            for i in soup.find_all('script'):
+                if 'window.__SURVEY_FORM_INITIAL_STATE__' in i.text:
+                    a = i.text.strip().splitlines()
+                    asd = []
+                    for ii in a:
+                        if ii == "" or len(ii) < 300:
+                            pass
+                        else:
+                            asd.append(ii.strip())
+                    self.parsed = json.loads(asd[0][47:len(asd[0]) - 1].replace("'", '"'))
 
     def __userparse(self):
         b = self.parsed
-        self.personId,self.shoolsId = b[0]['analytics']["personId"],b[0]['analytics']["schoolId"]
+        self.personId,self.shoolsId = b['analytics']["personId"],b['analytics']["schoolId"]

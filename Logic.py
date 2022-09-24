@@ -5,6 +5,9 @@ import logs
 import requests
 from datetime import datetime
 import locale
+import os
+from kivy.logger import Logger
+from bs4 import BeautifulSoup
 
 locale.setlocale(
     category=locale.LC_ALL,
@@ -24,12 +27,11 @@ def getInternet():
 
 log = logs.Logs('Logic.py')
 
-
 class Sessions:
     _proxy = ["http://141.101.123.24:80", "http://203.30.191.33:80"]
     _dist = {"http": _proxy[random.randint(0, 1)]}
 
-    def __init__(self, debug=False,internet=True):
+    def __init__(self, debug=False, internet=True):
         import requests
 
         self.debug = debug
@@ -39,42 +41,35 @@ class Sessions:
         self.session = requests.Session()
 
         if self.internet:
-            try:
-                self.__login_with_pass()
-            except:
-                self.__login()
-
+            self.__login()
             self.__MainParse()
             self.__userparse()
         else:
             self.load_backup()
 
-    def __login_with_pass(self):
+    def __login(self):
         """Вход без пароля"""
         import pickle
-        try:
+
+        if os.path.exists('files/somefile.cookies'):
             with open('files/somefile.cookies', 'rb') as f:
                 self.session.cookies.update(pickle.load(f))
-                aa = self.session.get(url='https://school.mosreg.ru/feed/')
+            aa = self.session.get(url='https://school.mosreg.ru/feed/')
             if aa.headers['Cache-Control'] != "private, s-maxage=0":
-                raise Exception('Ошибка во время входа в шп по куки файлам')
-        except Exception as e:
-            log.add(e, "Internet", "Non")
-            raise Exception('Ошибка во время входа в шп по куки файлам')
-
-    def __login(self):
-        """вход с паролем"""
-        import os
-        try:
-            if os.path.exists('files/data_file.json'):
-                with open('files/data_file.json') as f:
-                    self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f),
-                                      proxies=self._dist)
-                self.__cookies()
+                Logger.error('Ошибка во время входа в шп по куки файлам')
             else:
-                log.add("Ошибка отсутствует файл с поролем", "Internet", "Exception")
-        except Exception as e:
-            log.add(e, "Internet", "Exception")
+                return None
+        else:
+            Logger.warn(f"Login: Отсутствует файл с куки")
+
+        if os.path.exists('files/data_file.json'):
+            with open('files/data_file.json') as f:
+                self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f),proxies=self._dist)
+            self.__cookies()
+            return None
+        else:
+            Logger.error(f"Login: Отсутствует файл с данными")
+            raise FileNotFoundError("Ошибка отсутствует файл с данными")
 
     def __cookies(self):
         """получение куки файлов и сохранение"""
@@ -116,38 +111,30 @@ class Sessions:
             self.parsed = a[0]
             self.parsed_user = a[1]
 
-    def __MainParseMini(self, quotes):
-        a = quotes.text.strip().splitlines()
-        asd = []
-        for i in a:
-            if i == "" or len(i)<300:
-                pass
-            else:
-                asd.append(i.strip())
-        string_user = asd[1][34:len(asd[1])-1]
-        string = asd[0][47:len(asd[0])-1]
-        self.parsed = json.loads(string.replace("'", '"'))
-        self.parsed_user = json.loads(string_user.replace("'", '"'))
-        self.save_backup()
-
     def __MainParse(self):
+        mainpage = self.session.get('https://school.mosreg.ru/feed')
         try:
-            from bs4 import BeautifulSoup
-            mainpage = self.session.get('https://school.mosreg.ru/feed')
             soup = BeautifulSoup(mainpage.text, 'lxml')
-            for i in soup.find_all('script'):
-                if 'window.__SURVEY_FORM_INITIAL_STATE__' in i.text:
-                    self.__MainParseMini(i)
-
-            if self.internet == False:
-                with open("files/backup.dit", "r") as f:
-                    self.parsed = json.load(f)
-                with open('files/backups.dit', "r")as f:
-                    self.parsed_user = json.load(f)
-        except Exception as e:
-            log.add(e, "Not exist", "Normal important")
-            exit()
-        return self.parsed
+        except:
+            Logger.warn(f"Parser: Установите lxml для более быстрой работы")
+            soup = BeautifulSoup(mainpage.text, "html.parser")
+        for i in soup.find_all('script'):
+            if 'window.__SURVEY_FORM_INITIAL_STATE__' in i.text:
+                a = i.text.strip().splitlines()
+                asd = []
+                for ii in a:
+                    if ii == "" or len(ii) < 300:
+                        pass
+                    else:
+                        asd.append(ii.strip())
+                self.parsed = json.loads(asd[0][47:len(asd[0]) - 1].replace("'", '"'))
+                self.parsed_user = json.loads(asd[1][34:len(asd[1]) - 1].replace("'", '"'))
+                self.save_backup()
+                break
+        if self.internet == False:
+            with open("files/backup.dit", "r") as f,open('files/backups.dit', "r")as fa:
+                self.parsed = json.load(f)
+                self.parsed_user = json.load(fa)
 
     def feedparse(self):
         marks = []

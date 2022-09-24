@@ -13,7 +13,7 @@ class Logs:
             f.write(f"")
         self.Logschek()
 
-    def add(self,text,type,priority):
+    def add(self,text,type=0,priority=0):
         with open(f"log/{self.time}-{self.locate}.logs", 'a')as f:
             caller = getframeinfo(stack()[1][0])
             messeg = f"{text}-{type}-{caller.lineno}-{priority}\n"
