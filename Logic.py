@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import random
-import logs
+import time
+
 import requests
 from datetime import datetime
 import locale
@@ -9,11 +10,20 @@ import os
 from kivy.logger import Logger
 from bs4 import BeautifulSoup
 
+def profiler(func):
+    def wrapper(*args, **kwargs):
+        before = time.time()
+        retval = func(*args, **kwargs)
+        after = time.time()
+        Logger.warn(f"Function: {func.__name__}| {after-before}")
+        return retval
+    return wrapper
+
 locale.setlocale(
     category=locale.LC_ALL,
-    locale="Russian"  # Note: do not use "de_DE" as it doesn't work
+    locale="Russian"
 )
-
+@profiler
 def getInternet():
     """вход с паролем"""
     try:
@@ -24,8 +34,6 @@ def getInternet():
             return True
     except Exception as e:
         return False
-
-log = logs.Logs('Logic.py')
 
 class Sessions:
     _proxy = ["http://141.101.123.24:80", "http://203.30.191.33:80"]
@@ -46,7 +54,7 @@ class Sessions:
             self.__userparse()
         else:
             self.load_backup()
-
+    @profiler
     def __login(self):
         """Вход без пароля"""
         import pickle
@@ -71,6 +79,7 @@ class Sessions:
             Logger.error(f"Login: Отсутствует файл с данными")
             raise FileNotFoundError("Ошибка отсутствует файл с данными")
 
+    @profiler
     def __cookies(self):
         """получение куки файлов и сохранение"""
         import pickle
@@ -78,13 +87,12 @@ class Sessions:
             pickle.dump(self.session.cookies, f)
         return self.session.cookies
 
-    #Работает.
+    @profiler
     def DzApi(self, date):
-        """получение дз\n
-        date=2022-02-11
-        """
-        apijson = self.session.get(
-            f'https://school.mosreg.ru/api/feed/schedule/{self.personId}/{self.shoolsId}/{date}/').json()
+        api = self.session.get(f'https://school.mosreg.ru/api/feed/schedule/{self.personId}/{self.shoolsId}/{date}/')
+        if api.status_code == 500:
+            Logger.warn("Api 500")
+        apijson = api.json()
         returns = []
         for i in apijson['response']['items']:
             lesson = i['subject']
@@ -95,22 +103,26 @@ class Sessions:
             returns.append([lesson, homework, kabinet, timelesson, url])
         return returns
 
+    @profiler
     def __get_image(self):
         '''получение изображения'''
         image = self.session.get("https://static.school.mosreg.ru/images/avatars/user/a.s.jpg")
         with open('files/profil.jpg', 'wb') as f:
             f.write(image.content)
 
+    @profiler
     def save_backup(self):
         with open("files/backup.dit", "w") as f:
             json.dump([self.parsed,self.parsed_user], f)
 
+    @profiler
     def load_backup(self):
         with open("files/backup.dit", "r") as f:
             a = json.load(f)
             self.parsed = a[0]
             self.parsed_user = a[1]
 
+    @profiler
     def __MainParse(self):
         mainpage = self.session.get('https://school.mosreg.ru/feed')
         try:
@@ -196,6 +208,7 @@ class Sessions:
         self.shoolsName = b['userContext']["currentContextPerson"]["school"]['id'],b['userContext']["currentContextPerson"]["school"]['name']
         self.userParams = b['userContext']["currentContextPerson"]['group']['name'],b['userContext']["currentContextPerson"]['group']['parallel']
 
+    @profiler
     def newsparse(self):
         "https://school.mosreg.ru/api/userfeed/posts"
         a = self.parsed

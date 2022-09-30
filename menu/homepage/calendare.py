@@ -4,9 +4,8 @@ from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import MDList
 from kivymd.uix.pickers import MDDatePicker
-
+import datetime
 from menu.homepage.cardDz import carddZ
-
 from Logic import getInternet
 from Logic_Lite import Sessions_Lite
 
@@ -25,18 +24,14 @@ setting=False
 internet = getInternet()
 
 class caledare(BoxLayout):
+    sess = lambda x:None
     def __int__(self):
         # --- --- time --- ---
-        t = time.localtime()
-        c_t = str(int(time.strftime("%d", t)) + 1)
-        cu_ti = time.strftime(f"20%y-%m-", t)
-        if len(str(c_t)) == 1:
-            c_t =str(0)+str(c_t)
-        cuc = cu_ti + c_t
+        cuc = datetime.date.today() + datetime.timedelta(days=1)
+        cuc.strftime('20%y-%m-%d')
         # --- --- end --- ---
         if internet:
             self.box =BoxLayout(orientation='vertical')
-            self.sess = Sessions_Lite(internet=getInternet())
             self.listen = listen(sess=self.sess, date=cuc)
             self.ids.ScrView.add_widget(self.listen.build())
             self.date = cuc

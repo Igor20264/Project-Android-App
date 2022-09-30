@@ -10,7 +10,7 @@ data = loads.load()
 
 class menu:
     def build(self,session):
-        homepa= homepage()
+        homepa= homepage(session)
         mainapa = mainapge.mainpage(session, data)
         mbbottonnav = MDBottomNavigation()
 
