@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import time
+
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.scrollview import ScrollView
 from kivymd.uix.bottomnavigation import MDBottomNavigationItem

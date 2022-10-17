@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import random
+import threading
 import time
 
 import requests
@@ -15,7 +16,7 @@ def profiler(func):
         before = time.time()
         retval = func(*args, **kwargs)
         after = time.time()
-        Logger.warn(f"Function: {func.__name__}| {after-before}")
+        Logger.info(f"TTS {func.__name__}: {round((after-before)*1000)} ms.")
         return retval
     return wrapper
 
@@ -39,12 +40,12 @@ class Sessions:
     _proxy = ["http://141.101.123.24:80", "http://203.30.191.33:80"]
     _dist = {"http": _proxy[random.randint(0, 1)]}
 
-    def __init__(self, debug=False, internet=True):
-        import requests
-
+    def __init__(self, debug=False, internet=True,proxy=True):
+        self.proxy = proxy
         self.debug = debug
         self.internet = internet
 
+    def auth(self):
         # Создание сессии
         self.session = requests.Session()
 
@@ -54,6 +55,7 @@ class Sessions:
             self.__userparse()
         else:
             self.load_backup()
+
     @profiler
     def __login(self):
         """Вход без пароля"""
@@ -72,7 +74,10 @@ class Sessions:
 
         if os.path.exists('files/data_file.json'):
             with open('files/data_file.json') as f:
-                self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f),proxies=self._dist)
+                if self.proxy:
+                    self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f),proxies=self._dist)
+                else:
+                    self.session.post('https://uslugi.mosreg.ru/api/school/user/login', json.load(f))
             self.__cookies()
             return None
         else:

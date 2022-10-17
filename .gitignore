@@ -10,3 +10,4 @@ venv
 .idea
 ss.bat
 *.lprof
+*.ffs_db
